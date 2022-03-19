@@ -15,13 +15,14 @@
     <title>ParTimee</title>
 
     <style>
-        body, html {
+        body,
+        html {
             height: 100%;
             margin: 0;
         }
 
         body {
-            background-image: url('asset/img/background.jpg');
+            background-image: url('<?php echo base_url(); ?>asset/img/background.jpg');
             background-repeat: no-repeat;
             height: 100%;
             background-position: center;
@@ -33,11 +34,11 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFFFFF;">
         <div class="__navbar-nav navbar-nav container-fluid">
-            <a class="__navbar-logo navbar-brand" href="<?= base_url() ?>">PartTimee</a>
+            <a class="__navbar-logo navbar-brand" href="<?= base_url() ?>auth">PartTimee</a>
             <div class="collapse navbar-collapse float-end" id="navbarNavAltMarkup" style="justify-content: end;">
                 <div class="navbar-nav">
-                    <a class="nav-link" aria-current="page" href="<?= base_url() ?>login">Login</a>
-                    <a class="nav-link" href="<?= base_url() ?>register">Register</a>
+                    <a class="nav-link" aria-current="page" href="<?= base_url() ?>auth">Login</a>
+                    <a class="nav-link" href="<?= base_url() ?>auth/registration">Register</a>
                 </div>
             </div>
         </div>

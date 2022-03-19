@@ -157,6 +157,7 @@ span {
 	margin-left: 60px;
 	margin-right: 60px;
 }
+
 .__jobs-content {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -562,6 +563,16 @@ span {
 }
 
 /* LOGIN & REGISTER */
+.__boxes {
+	margin-bottom: 16px;
+	text-align: left;
+}
+
+.__boxes p {
+	margin-top: 2px;
+	color: #F36869;
+}
+
 .__container-log-reg {
 	margin-left: 60px;
 	margin-right: 60px;
@@ -713,11 +724,12 @@ span {
 	font-size: 16px;
 	color: #9A9A9A;
 }
+
 .__company-industri {
 	margin-top: 12px;
 }
 
-.__company-lokasi span{
+.__company-lokasi span {
 	font-size: 16px;
 	color: #303030;
 	margin-left: 30px;
@@ -740,7 +752,7 @@ span {
 	justify-content: space-between;
 }
 
-.__company-about { 
+.__company-about {
 	font-size: 20px;
 	font-weight: 600;
 	margin-top: 60px;
@@ -760,7 +772,7 @@ span {
 	margin-top: 20px;
 	font-size: 18px;
 	display: flex;
-    justify-content: center;
+	justify-content: center;
 }
 
 .__height {
@@ -814,9 +826,9 @@ span {
 
 .__btn-edit-logout {
 	display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .__btn-edit {

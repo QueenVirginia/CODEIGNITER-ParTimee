@@ -1,10 +1,13 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-4 pl-4 text-gray-800">Add New Company</h1>
 
-<form action="" method="POST" class="mb-4 pl-4 col-md-8">
-    <div class="input-group">
-        <input type="file" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-        <!-- <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button> -->
+<!-- <?= form_open_multipart('admin/add_company'); ?> -->
+
+<form class="mb-4 pl-4 col-md-8">
+    <div class="form-group mt-3">
+        <label for="logo">Logo</label>
+        <input type="file" name="logo" class="form-control" id="logo" style="height: fit-content;">
+        <!-- <div class="form-text text-danger"><?= form_error('logo'); ?></div> -->
     </div>
     <div class="form-group mt-3">
         <label for="nama_company">Company Name</label>
@@ -38,3 +41,5 @@
     </div>
     <button type="submit" name="add_job" class="btn btn-primary float-end">Save Job</button>
 </form>
+</form>
+<!-- <?= form_close(); ?> -->

@@ -1,15 +1,16 @@
-<?php 
+<?php
 
-class Admin extends CI_Controller {
+class Admin extends CI_Controller
+{
 
-    public function __construct() 
+    public function __construct()
     {
         parent::__construct();
         $this->load->model('Admin_model');
-        $this->load->library('form_validation');
+        $this->load->library('form_validation', 'upload');
     }
 
-    public function index() 
+    public function index()
     {
         $data['count_user'] = $this->Admin_model->countDataUser();
         $data['count_jobs'] = $this->Admin_model->countDataJobs();
@@ -30,11 +31,11 @@ class Admin extends CI_Controller {
         $this->load->view('templates/footer_admin');
     }
 
-    public function delete_user($id_user) 
+    public function delete_user($id_user)
     {
         $this->Admin_model->deleteDataUser($id_user);
         $this->session->set_flashdata('flash', 'Deleted');
-        redirect('admin/user_list');  
+        redirect('admin/user_list');
     }
 
     public function detail_user($id_user)
@@ -64,26 +65,24 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('deskripsi_job', 'Description', 'required');
         $this->form_validation->set_rules('benefit_job', 'Benefit', 'required');
         $this->form_validation->set_rules('link_apply', 'Apply Link', 'required');
+        $this->form_validation->set_rules('logo', 'Logo', 'required');
 
-        if ($this->form_validation->run() == FALSE) 
-        {
+        if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header_admin');
             $this->load->view('admin/add_job');
             $this->load->view('templates/footer_admin');
-        } 
-        else 
-        {
+        } else {
             $this->Admin_model->addDataJobs();
             $this->session->set_flashdata('flash', 'Added');
-            redirect('admin/job_list');  
+            redirect('admin/job_list');
         }
     }
 
-    public function delete_job($id_job) 
+    public function delete_job($id_job)
     {
         $this->Admin_model->deleteDataJobs($id_job);
         $this->session->set_flashdata('flash', 'Deleted');
-        redirect('admin/job_list');  
+        redirect('admin/job_list');
     }
 
     public function detail_job($id_job)
@@ -103,20 +102,17 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('lokasi', 'Location', 'required');
         $this->form_validation->set_rules('batasan', 'Status', 'required');
         $this->form_validation->set_rules('deskripsi_job', 'Description', 'required');
-        $this->form_validation->set_rules('benefit_job', 'Benefit', 'required'); 
+        $this->form_validation->set_rules('benefit_job', 'Benefit', 'required');
         $this->form_validation->set_rules('link_apply', 'Apply Link', 'required');
 
-        if ($this->form_validation->run() == FALSE) 
-        {
+        if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header_admin');
             $this->load->view('admin/edit_job', $data);
             $this->load->view('templates/footer_admin');
-        } 
-        else 
-        {
+        } else {
             $this->Admin_model->editDataJobs();
             $this->session->set_flashdata('flash', 'Changed');
-            redirect('admin/job_list');  
+            redirect('admin/job_list');
         }
     }
 
@@ -130,35 +126,71 @@ class Admin extends CI_Controller {
         $this->load->view('templates/footer_admin');
     }
 
+
     public function add_company()
     {
+        // $config['upload_path']         = './asset/company_logo/';  // folder upload 
+        // $config['allowed_types']        = 'gif|jpg|png'; // jenis file
+        // $config['max_size']             = 1024;
+        // $config['max_width']            = 700;
+        // $config['max_height']           = 700;
+
+        // $this->load->library('upload', $config);
+
+        // if ( !$this->upload->do_upload('logo')) //sesuai dengan name pada form 
+        // {
+        //        echo 'anda gagal upload';
+        // }
+        // else
+        // {
+        //     //tampung data dari form
+        //     $nama_company = $this->input->post('nama_company');
+        //     $kantor_pusat = $this->input->post('kantor_pusat');
+        //     $deskripsi = $this->input->post('deskripsi');
+        //     $industri = $this->input->post('industri');
+        //     $situs = $this->input->post('situs');
+        //     $no_telepon = $this->input->post('no_telepon');
+        //     $file= $this->upload->data();
+
+        //     $logo = $file['file_name'];
+
+        //     $this->admin_model->addDataCompany(array(
+        //         'nama_company' => $nama_company,
+        //         'kantor_pusat' => $kantor_pusat,
+        //         'deskripsi' => $deskripsi,
+        //         'industri' => $industri,
+        //         'situs' => $situs,
+        //         'no_telepon' => $no_telepon,
+        //         'logo' => $logo
+
+        //     ));
+        //     $this->session->set_flashdata('flash','Added');
+        //     redirect('admin/company_list');
+
+        // }
         $this->form_validation->set_rules('nama_company', 'Company Name', 'required');
         $this->form_validation->set_rules('kantor_pusat', 'Office Base', 'required');
         $this->form_validation->set_rules('deskripsi', 'Description', 'required');
         $this->form_validation->set_rules('industri', 'Industry', 'required');
         $this->form_validation->set_rules('situs', 'Site', 'required');
         $this->form_validation->set_rules('no_telepon', 'Phone Number', 'required');
-        // $this->form_validation->set_rules('logo', 'Logo', 'required');
 
-        if ($this->form_validation->run() == FALSE) 
-        {
+        if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header_admin');
             $this->load->view('admin/add_company');
             $this->load->view('templates/footer_admin');
-        } 
-        else 
-        {
+        } else {
             $this->Admin_model->addDataCompany();
             $this->session->set_flashdata('flash', 'Added');
-            redirect('admin/company_list');  
+            redirect('admin/company_list');
         }
     }
 
-    public function delete_company($id_company) 
+    public function delete_company($id_company)
     {
         $this->Admin_model->deleteDataCompany($id_company);
         $this->session->set_flashdata('flash', 'Deleted');
-        redirect('admin/company_List');  
+        redirect('admin/company_List');
     }
 
     public function detail_company($id_company)
@@ -182,17 +214,14 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('no_telepon', 'Phone Number', 'required');
         // $this->form_validation->set_rules('logo', 'Logo', 'required');
 
-        if ($this->form_validation->run() == FALSE) 
-        {
+        if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header_admin');
             $this->load->view('admin/edit_company', $data);
             $this->load->view('templates/footer_admin');
-        } 
-        else 
-        {
+        } else {
             $this->Admin_model->editDataCompany();
             $this->session->set_flashdata('flash', 'Changed');
-            redirect('admin/company_list');  
+            redirect('admin/company_list');
         }
     }
 
