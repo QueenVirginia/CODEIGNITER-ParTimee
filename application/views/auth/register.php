@@ -11,7 +11,7 @@
                     <span class="__input-group-text input-group-text"><img src="<?php echo base_url(); ?>asset/icon/user.svg" class="input-group-text" alt=""></span>
                     <input type="text" class="__input-form form-control" placeholder="Full Name" aria-label="nama" name="nama" id="nama" value="<?= set_value('nama'); ?>">
                 </div>
-                <small><?= form_error('name'); ?></small>
+                <small><?= form_error('nama'); ?></small>
             </div>
 
             <div class="__boxes">

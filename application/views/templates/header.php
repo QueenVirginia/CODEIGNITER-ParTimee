@@ -33,7 +33,7 @@
                 <img src="<?= base_url(); ?>asset/img/hero.png" class="dropdown-toggle" type="button" id="profile-pic" data-bs-toggle="dropdown" aria-expanded="false" style="width: 40px; height: 40px; border-radius: 50%;">
                 <ul class="dropdown-menu" aria-labelledby="profile-pic" style="margin-left: -100px;">
                     <li><a class="dropdown-item" href="<?= base_url() ?>profile">Profile</a></li>
-                    <li><a class="dropdown-item" href="<?= base_url() ?>login">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url() ?>auth/logout">Logout</a></li>
                 </ul>
             </div>
         </div>

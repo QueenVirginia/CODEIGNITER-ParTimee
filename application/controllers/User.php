@@ -1,8 +1,9 @@
-<?php 
+<?php
 
-class User extends CI_Controller {
+class User extends CI_Controller
+{
 
-    public function __construct() 
+    public function __construct()
     {
         parent::__construct();
         $this->load->model('Admin_model');
@@ -16,5 +17,10 @@ class User extends CI_Controller {
         $this->load->view('templates/header_admin');
         $this->load->view('admin/user_table');
         $this->load->view('templates/footer_admin');
+    }
+
+    public function jj()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     }
 }
