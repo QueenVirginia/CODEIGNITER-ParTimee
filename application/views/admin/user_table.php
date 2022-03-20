@@ -27,7 +27,6 @@
         </div>
     <?php endif; ?>
 
-    <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -53,7 +52,7 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <?php foreach ($user as $u) : ?>
+                        <?php foreach ($user_data as $u) : ?>
                             <tr>
                                 <td><?= $u['id_user']; ?></td>
                                 <td><?= $u['nama']; ?></td>

@@ -19,8 +19,8 @@ class User extends CI_Controller
         $this->load->view('templates/footer_admin');
     }
 
-    public function jj()
-    {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-    }
+    // public function jj()
+    // {
+    //     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    // }
 }

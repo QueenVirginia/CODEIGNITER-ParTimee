@@ -5,33 +5,22 @@
 
     <div class="__profile-detail">
         <div class="__profile-photo">
-            <img src="<?= base_url(); ?>asset/img/hero.png" alt="">
+            <img src="<?= base_url('asset/profile_img/') . $user['foto']; ?>" alt="">
             <div class="__profile-name">
-                <h1>Jane Doe</h1>
-                <p>Email</p>
+                <h1><?= $user['nama']; ?></h1>
+                <p><?= $user['email']; ?></p>
+                <h6 class="mt-3 text-muted fw-light">Created since <?= date('d F Y', $user['tanggal_buat']); ?></h6>
             </div>
         </div>
         <div class="__btn-edit-logout">
             <a href="" class="__btn-edit btn btn-primary">EDIT</a>
-            <a href="" class="__btn-logout btn btn-outline-danger">LOGOUT</a>
+            <a href="<?= base_url() ?>auth/logout" class="__btn-logout btn btn-outline-danger">LOGOUT</a>
         </div>
     </div>
 
     <div class="__profile-desc-jobs">
         <div class="__profile-desc">
             <h1>Profile Detail</h1>
-            <div class="__profile-form">
-                <h2>Self Description</h2>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur iure voluptatem repellat. Enim consequuntur animi facilis sint suscipit, veniam placeat aperiam culpa deleniti earum id pariatur doloremque ullam praesentium ut.
-                </p>
-            </div>
-            <div class="__profile-form">
-                <h2>My Location</h2>
-                <p>
-                    Jakarta
-                </p>
-            </div>
             <div class="__profile-form">
                 <h2>Phone Number</h2>
                 <p>
@@ -62,7 +51,7 @@
             <div class="__profile-form">
                 <h2>CV File</h2>
                 <p>
-                   cv.pdf
+                    cv.pdf
                 </p>
             </div>
         </div>

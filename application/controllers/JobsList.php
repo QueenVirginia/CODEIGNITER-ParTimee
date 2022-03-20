@@ -14,7 +14,6 @@ class JobsList extends CI_Controller
 
     public function index()
     {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['jobs'] = $this->Jobs_model->getAllJobs();
 
         if ($this->input->post('cari_kerja')) {

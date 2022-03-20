@@ -12,21 +12,34 @@ class Admin extends CI_Controller
 
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
         $data['count_user'] = $this->Admin_model->countDataUser();
         $data['count_jobs'] = $this->Admin_model->countDataJobs();
         $data['count_company'] = $this->Admin_model->countDataCompany();
         // $data['count_apply'] = $this->Admin_model->countDataApply();
-        $this->load->view('templates/header_admin');
+        $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/index', $data);
+        $this->load->view('templates/footer_admin');
+    }
+
+
+    public function profile()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header_admin', $data);
+        $this->load->view('admin/profile');
         $this->load->view('templates/footer_admin');
     }
 
     // =============================== USER ===============================
     public function user_list()
     {
-        $data['user'] = $this->Admin_model->getAllUser();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user_data'] = $this->Admin_model->getAllUser();
 
-        $this->load->view('templates/header_admin');
+        $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/user_table', $data);
         $this->load->view('templates/footer_admin');
     }
@@ -35,13 +48,16 @@ class Admin extends CI_Controller
     {
         $this->Admin_model->deleteDataUser($id_user);
         $this->session->set_flashdata('flash', 'Deleted');
+
         redirect('admin/user_list');
     }
 
     public function detail_user($id_user)
     {
-        $data['user'] = $this->Admin_model->getUserById($id_user);
-        $this->load->view('templates/header_admin');
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user_data'] = $this->Admin_model->getUserById($id_user);
+
+        $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/detail_user', $data);
         $this->load->view('templates/footer_admin');
     }
@@ -49,9 +65,10 @@ class Admin extends CI_Controller
     // =============================== JOB ===============================
     public function job_list()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['jobs'] = $this->Admin_model->getAllJobs();
 
-        $this->load->view('templates/header_admin');
+        $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/jobs_table', $data);
         $this->load->view('templates/footer_admin');
     }
@@ -68,7 +85,9 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('logo', 'Logo', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/header_admin');
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+            $this->load->view('templates/header_admin', $data);
             $this->load->view('admin/add_job');
             $this->load->view('templates/footer_admin');
         } else {
@@ -87,8 +106,10 @@ class Admin extends CI_Controller
 
     public function detail_job($id_job)
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['jobs'] = $this->Admin_model->getJobById($id_job);
-        $this->load->view('templates/header_admin');
+
+        $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/detail_job', $data);
         $this->load->view('templates/footer_admin');
     }
@@ -106,7 +127,9 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('link_apply', 'Apply Link', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/header_admin');
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+            $this->load->view('templates/header_admin', $data);
             $this->load->view('admin/edit_job', $data);
             $this->load->view('templates/footer_admin');
         } else {
@@ -119,9 +142,10 @@ class Admin extends CI_Controller
     // =============================== COMPANY ===============================
     public function company_list()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['company'] = $this->Admin_model->getAllCompany();
 
-        $this->load->view('templates/header_admin');
+        $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/company_table', $data);
         $this->load->view('templates/footer_admin');
     }
@@ -176,7 +200,9 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('no_telepon', 'Phone Number', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/header_admin');
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+            $this->load->view('templates/header_admin', $data);
             $this->load->view('admin/add_company');
             $this->load->view('templates/footer_admin');
         } else {
@@ -195,8 +221,10 @@ class Admin extends CI_Controller
 
     public function detail_company($id_company)
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['company'] = $this->Admin_model->getCompanyById($id_company);
-        $this->load->view('templates/header_admin');
+
+        $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/detail_company', $data);
         $this->load->view('templates/footer_admin');
     }
@@ -215,7 +243,9 @@ class Admin extends CI_Controller
         // $this->form_validation->set_rules('logo', 'Logo', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/header_admin');
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+            $this->load->view('templates/header_admin', $data);
             $this->load->view('admin/edit_company', $data);
             $this->load->view('templates/footer_admin');
         } else {
@@ -228,17 +258,20 @@ class Admin extends CI_Controller
     // =============================== Apply ===============================
     public function apply_list()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['apply'] = $this->Admin_model->getAllDataApply();
 
-        $this->load->view('templates/header_admin');
+        $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/apply_table', $data);
         $this->load->view('templates/footer_admin');
     }
 
     public function detail_apply($id_apply)
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['apply'] = $this->Admin_model->getApplyById($id_apply);
-        $this->load->view('templates/header_admin');
+
+        $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/detail_apply', $data);
         $this->load->view('templates/footer_admin');
     }

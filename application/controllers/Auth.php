@@ -37,7 +37,11 @@ class Auth extends CI_Controller
                 ];
 
                 $this->session->set_userdata($data);
-                redirect('jobslist');
+                if ($user['id_role'] == 1) {
+                    redirect('admin');
+                } else {
+                    redirect('jobslist');
+                }
             } else {
                 $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Wrong password! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
                 redirect('auth');
@@ -72,7 +76,7 @@ class Auth extends CI_Controller
                 'facebook' => $this->input->post('facebook'),
                 'instagram' => $this->input->post('instagram'),
                 'linkedin' => $this->input->post('linkedin'),
-                'foto' => 'default.jpg',
+                'foto' => 'default.jpeg',
                 'cv' => 'default.pdf',
                 'id_role' => 2,
                 'tanggal_buat' => time(),

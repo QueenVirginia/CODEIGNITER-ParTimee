@@ -13,31 +13,31 @@
                 </li>
                 <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">User Name</h6>
-                    <h5 class="mb-0 card-title text-primary"><?= $user['nama']; ?></h5>
+                    <h5 class="mb-0 card-title text-primary"><?= $user_data['nama']; ?></h5>
                 </li>
                 <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">Email</h6>
-                    <h5 class="mb-0 card-title text-primary"><?= $user['email']; ?></h5>
+                    <h5 class="mb-0 card-title text-primary"><?= $user_data['email']; ?></h5>
                 </li>
                 <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">Phone Number</h6>
-                    <h5 class="mb-0 card-title text-primary"><?= $user['no_telepon']; ?></h5>
+                    <h5 class="mb-0 card-title text-primary"><?= $user_data['no_telepon']; ?></h5>
                 </li>
                 <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">Facebook</h6>
-                    <h5 class="mb-0 card-title text-primary"><?= $user['facebook']; ?></h5>
+                    <h5 class="mb-0 card-title text-primary"><?= $user_data['facebook']; ?></h5>
                 </li>
                 <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">Instagram</h6>
-                    <h5 class="mb-0 card-title text-primary"><?= $user['instagram']; ?></h5>
+                    <h5 class="mb-0 card-title text-primary"><?= $user_data['instagram']; ?></h5>
                 </li>
                 <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">LinkedIn</h6>
-                    <h5 class="mb-0 card-title text-primary"><?= $user['linkedin']; ?></h5>
+                    <h5 class="mb-0 card-title text-primary"><?= $user_data['linkedin']; ?></h5>
                 </li>
                 <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">CV</h6>
-                    <h5 class="mb-0 card-title text-primary"><?= $user['cv']; ?></h5>
+                    <h5 class="mb-0 card-title text-primary"><?= $user_data['cv']; ?></h5>
                 </li>
             </ul>
         </div>

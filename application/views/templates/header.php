@@ -19,9 +19,6 @@
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFFFFF;">
         <div class="__navbar-nav navbar-nav container-fluid">
             <a class="__navbar-logo navbar-brand" href="<?= base_url() ?>">PartTimee</a>
-            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button> -->
             <div class="collapse navbar-collapse float-end" id="navbarNavAltMarkup" style="justify-content: center;">
                 <div class="navbar-nav">
                     <a class="nav-link" aria-current="page" href="<?= base_url() ?>jobslist">Jobs</a>
