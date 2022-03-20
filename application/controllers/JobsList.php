@@ -22,8 +22,6 @@ class JobsList extends CI_Controller
 
         $data['count'] = $this->Jobs_model->countData();
         $this->load->view('jobs_list/index', $data);
-
-        // echo 'Haii', $data['user']['nama'];
     }
 
     // public function detail($id_job)

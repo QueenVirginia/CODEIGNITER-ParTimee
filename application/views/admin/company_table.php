@@ -7,18 +7,18 @@
         For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
 
-    <div class="d-flex justify-content-end" >
+    <div class="d-flex justify-content-end">
         <!-- Add Jobs -->
-            <div class="col-md-6 mb-4 mr-auto">
-                <a href="<?= base_url(); ?>admin/add_company/" class="btn btn-primary btn-lg"><i class="fas fa-plus fa-sm"></i> Add New Company</a>
-            </div>
+        <div class="col-md-6 mb-4 mr-auto">
+            <a href="<?= base_url(); ?>admin/add_company/" class="btn btn-primary btn-lg"><i class="fas fa-plus fa-sm"></i> Add New Company</a>
+        </div>
 
         <!-- Topbar Search -->
-        <form class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <form method="POST" class="d-none d-sm-inline-block form-inline mb-md-4 mx-auto col-6 navbar-search">
             <div class="input-group">
-                <input type="text" class="form-control bg-white border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <input type="text" class="form-control bg-white border-0 small" placeholder="Search By Company ID, Company Name, Base Office, Rating, Industry..." name="cari_company">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
+                    <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search fa-sm"></i>
                     </button>
                 </div>
@@ -64,6 +64,14 @@
                         </tr>
                     </tfoot>
                     <tbody>
+                        <?php if (empty($company)) : ?>
+                            <div class="__empty-state mb-4 text-center">
+                                <h1>Sorry</h1>
+                                <p class="text-muted">We can't find the jobs your looking for,</p>
+                                <a href="<?= base_url(); ?>admin/company_list" class="__btn-back-to-jobs btn btn-primary">Go Back</a>
+                            </div>
+                        <?php endif; ?>
+
                         <?php foreach ($company as $c) : ?>
                             <tr>
                                 <td><?= $c['id_company']; ?></td>

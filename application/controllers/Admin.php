@@ -23,7 +23,6 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer_admin');
     }
 
-
     public function profile()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -38,6 +37,10 @@ class Admin extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user_data'] = $this->Admin_model->getAllUser();
+
+        if ($this->input->post('cari_user')) {
+            $data['user_data'] = $this->Admin_model->searchUser();
+        }
 
         $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/user_table', $data);
@@ -67,6 +70,10 @@ class Admin extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['jobs'] = $this->Admin_model->getAllJobs();
+
+        if ($this->input->post('cari_job')) {
+            $data['jobs'] = $this->Admin_model->searchJobs();
+        }
 
         $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/jobs_table', $data);
@@ -144,6 +151,10 @@ class Admin extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['company'] = $this->Admin_model->getAllCompany();
+
+        if ($this->input->post('cari_company')) {
+            $data['company'] = $this->Admin_model->searchCompany();
+        }
 
         $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/company_table', $data);

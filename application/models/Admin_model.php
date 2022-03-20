@@ -4,12 +4,12 @@ class Admin_model extends CI_Model
 {
     // =============================== USER ===============================
     public function getAllUser()
-    { 
+    {
         $this->db->order_By('id_user', 'ASC');
         $query = $this->db->get('User');
         return $query->result_array();
     }
-    
+
     public function getUserById($id_user)
     {
         return $this->db->get_where('user', ['id_user' => $id_user])->row_array();
@@ -26,9 +26,19 @@ class Admin_model extends CI_Model
         $this->db->delete('user');
     }
 
+    public function searchUser()
+    {
+        $keyword = $this->input->post('cari_user', TRUE);
+        $this->db->like('id_user', $keyword);
+        $this->db->or_like('nama', $keyword);
+        $this->db->or_like('email', $keyword);
+        $this->db->or_like('no_telepon', $keyword);
+        return $this->db->get('user')->result_array();
+    }
+
     // =============================== JOBS ===============================
     public function getAllJobs()
-    { 
+    {
         $this->db->order_By('id_job', 'DESC');
         $query = $this->db->get('Jobs');
         return $query->result_array();
@@ -42,6 +52,17 @@ class Admin_model extends CI_Model
     public function countDataJobs()
     {
         return $this->db->count_all_results('jobs');
+    }
+
+    public function searchJobs()
+    {
+        $keyword = $this->input->post('cari_job', TRUE);
+        $this->db->like('id_job', $keyword);
+        $this->db->or_like('nama_job', $keyword);
+        $this->db->or_like('lokasi', $keyword);
+        $this->db->or_like('batasan', $keyword);
+        $this->db->or_like('tipe_kerja', $keyword);
+        return $this->db->get('jobs')->result_array();
     }
 
     public function addDataJobs()
@@ -84,7 +105,7 @@ class Admin_model extends CI_Model
 
     // =============================== COMPANY ===============================
     public function getAllCompany()
-    { 
+    {
         $this->db->order_By('id_company', 'ASC');
         $query = $this->db->get('Company');
         return $query->result_array();
@@ -100,6 +121,17 @@ class Admin_model extends CI_Model
         return $this->db->count_all_results('company');
     }
 
+    public function searchCompany()
+    {
+        $keyword = $this->input->post('cari_company', TRUE);
+        $this->db->like('id_company', $keyword);
+        $this->db->or_like('nama_company', $keyword);
+        $this->db->or_like('kantor_pusat', $keyword);
+        $this->db->or_like('rating', $keyword);
+        $this->db->or_like('industri', $keyword);
+        return $this->db->get('company')->result_array();
+    }
+
     public function upload()
     {
         $config['upload_path'] = './asset/company_logo';
@@ -108,12 +140,11 @@ class Admin_model extends CI_Model
         $config['remove_space'] = TRUE;
 
         $this->load->library('upload', $config); // Load konfigurasi uploadnya
-        if($this->upload->do_upload('input_gambar')){ // Lakukan upload dan Cek jika proses upload berhasil
+        if ($this->upload->do_upload('input_gambar')) { // Lakukan upload dan Cek jika proses upload berhasil
             // Jika berhasil :
             $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
             return $return;
-        } else
-        {
+        } else {
             // Jika gagal :
             $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
             return $return;
@@ -160,7 +191,7 @@ class Admin_model extends CI_Model
 
     // =============================== DATA APPLY ===============================
     public function getAllDataApply()
-    { 
+    {
         $this->db->order_By('id_apply', 'ASC');
         $query = $this->db->get('Apply');
         return $query->result_array();

@@ -13,11 +13,11 @@
         </div>
 
         <!-- Topbar Search -->
-        <form class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <form method="POST" class="d-none d-sm-inline-block form-inline mb-md-4 mx-auto col-6 navbar-search">
             <div class="input-group">
-                <input type="text" class="form-control bg-white border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <input type="text" class="form-control bg-white border-0 small" placeholder="Search By Job ID, Job Name, Location, Status, Job Type..." name="cari_job">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
+                    <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search fa-sm"></i>
                     </button>
                 </div>
@@ -63,6 +63,14 @@
                         </tr>
                     </tfoot>
                     <tbody>
+                        <?php if (empty($jobs)) : ?>
+                            <div class="__empty-state mb-4 text-center">
+                                <h1>Sorry</h1>
+                                <p class="text-muted">We can't find the jobs your looking for,</p>
+                                <a href="<?= base_url(); ?>admin/job_list" class="__btn-back-to-jobs btn btn-primary">Go Back</a>
+                            </div>
+                        <?php endif; ?>
+
                         <?php foreach ($jobs as $j) : ?>
                             <tr>
                                 <td><?= $j['id_job']; ?></td>
