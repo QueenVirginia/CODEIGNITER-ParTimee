@@ -82,6 +82,8 @@ class Admin extends CI_Controller
 
     public function add_job()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
         $this->form_validation->set_rules('nama_job', 'Job Name', 'required');
         $this->form_validation->set_rules('lokasi', 'Location', 'required');
         $this->form_validation->set_rules('batasan', 'Status', 'required');
@@ -92,8 +94,6 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('logo', 'Logo', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
             $this->load->view('templates/header_admin', $data);
             $this->load->view('admin/add_job');
             $this->load->view('templates/footer_admin');
