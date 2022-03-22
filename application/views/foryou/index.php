@@ -39,7 +39,7 @@
                     </div>
                     <div class="__job-content-exp">
                         <img src="asset/icon/experiences.svg" alt="" style="width: 20px; height: 20px;">
-                        <p>1 Lowongan</p>
+                        <p><?= $c['count']; ?> Lowongan</p>
                     </div>
                 </div>
             </div>

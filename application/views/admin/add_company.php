@@ -1,9 +1,7 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-4 pl-4 text-gray-800">Add New Company</h1>
 
-<!-- <?= form_open_multipart('admin/add_company'); ?> -->
-
-<form class="mb-4 pl-4 col-md-8">
+<form class="mb-4 pl-4 col-md-8" method="POST">
     <div class="form-group mt-3">
         <label for="logo">Logo</label>
         <input type="file" name="logo" class="form-control" id="logo" style="height: fit-content;">
@@ -41,5 +39,3 @@
     </div>
     <button type="submit" name="add_job" class="btn btn-primary float-end">Save Job</button>
 </form>
-</form>
-<!-- <?= form_close(); ?> -->

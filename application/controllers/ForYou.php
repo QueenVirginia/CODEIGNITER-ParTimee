@@ -1,8 +1,9 @@
 <?php
 
-class ForYou extends CI_Controller {
+class ForYou extends CI_Controller
+{
 
-    public function __construct() 
+    public function __construct()
     {
         parent::__construct();
         $this->load->model('Company_model');
@@ -15,14 +16,17 @@ class ForYou extends CI_Controller {
     {
         $data['company'] = $this->Company_model->getAllCompany();
 
-        if( $this->input->post('cari_company') ) {
+        if ($this->input->post('cari_company')) {
             $data['company'] = $this->Company_model->searchCompany();
         }
 
-        // $data['count'] = $this->Company_model->countData();
         $this->load->view('foryou/index', $data);
+
+        // echo '<pre>';
+        // var_dump($data);
+        // echo '</pre>';
     }
-    
+
     public function detail($id_company)
     {
         $data['company'] = $this->Company_model->getCompanyById($id_company);

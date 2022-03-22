@@ -18,6 +18,7 @@ class Admin extends CI_Controller
         $data['count_jobs'] = $this->Admin_model->countDataJobs();
         $data['count_company'] = $this->Admin_model->countDataCompany();
         // $data['count_apply'] = $this->Admin_model->countDataApply();
+
         $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/index', $data);
         $this->load->view('templates/footer_admin');
@@ -91,7 +92,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('deskripsi_job', 'Description', 'required');
         $this->form_validation->set_rules('benefit_job', 'Benefit', 'required');
         $this->form_validation->set_rules('link_apply', 'Apply Link', 'required');
-        $this->form_validation->set_rules('logo', 'Logo', 'required');
+        // $this->form_validation->set_rules('logo', 'Logo', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header_admin', $data);
@@ -203,16 +204,18 @@ class Admin extends CI_Controller
         //     redirect('admin/company_list');
 
         // }
+
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        // $this->form_validation->set_rules('logo', 'Logo', 'required');
         $this->form_validation->set_rules('nama_company', 'Company Name', 'required');
         $this->form_validation->set_rules('kantor_pusat', 'Office Base', 'required');
-        $this->form_validation->set_rules('deskripsi', 'Description', 'required');
         $this->form_validation->set_rules('industri', 'Industry', 'required');
         $this->form_validation->set_rules('situs', 'Site', 'required');
         $this->form_validation->set_rules('no_telepon', 'Phone Number', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Description', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
             $this->load->view('templates/header_admin', $data);
             $this->load->view('admin/add_company');
             $this->load->view('templates/footer_admin');

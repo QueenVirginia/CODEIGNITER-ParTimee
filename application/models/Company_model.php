@@ -3,17 +3,18 @@
 class Company_model extends CI_Model
 {
     public function GetAllCompany()
-    { 
-        $this->db->order_By('id_company', 'DESC');
-        $query = $this->db->get('company');
-        return $query->result_array();
-
-        // $this->db->select('*');
-        // $this->db->from('jobs');
-        // $this->db->join('company', 'company.id_company = jobs.id_company');
-        // $this->db->order_By('id_job', 'DESC');
-        // $query = $this->db->get();
+    {
+        // $this->db->order_By('nama_company', 'ASC');
+        // $query = $this->db->get('company');
         // return $query->result_array();
+
+        $this->db->select('count(company.id_company) as count, company.id_company, company.nama_company, company.rating, company.kantor_pusat');
+        $this->db->from('company');
+        $this->db->join('jobs', 'jobs.id_company = company.id_company');
+        $this->db->group_by('jobs.id_company');
+        $this->db->order_By('nama_company', 'ASC');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function getCompanyById($id_company)
@@ -27,6 +28,7 @@ class Company_model extends CI_Model
         $this->db->like('nama_company', $keyword);
         $this->db->or_like('lokasi', $keyword);
         $this->db->or_like('rating', $keyword);
+
         return $this->db->get('company')->result_array();
     }
 }
