@@ -11,4 +11,8 @@ class Profile extends CI_Controller
         $this->load->view('profile/index', $data);
         $this->load->view('templates/footer');
     }
+
+    public function edit_profile()
+    {
+    }
 }

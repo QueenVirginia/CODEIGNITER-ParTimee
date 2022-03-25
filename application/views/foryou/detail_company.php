@@ -5,13 +5,16 @@
 <div class="__company-detail">
     <div class="__company-detail-card">
         <div class="__company-detail-body card-body">
-            <h1 class="__company-name"><?= $company['nama_company']; ?></h1>
+            <h1><?= $company['nama_company']; ?></h1>
             <div class="__company-detail-text">
                 <div class="__company-detail-loc-situs">
                     <p class="__company-lokasi">Kantor Pusat<span><?= $company['kantor_pusat']; ?></span></p>
-                    <p class="__company-situs">Situs<a href="<?= $company['situs']; ?>" target="__blank"><?= $company['situs']; ?></a></p>
+                    <p class="__company-industri">Industri<span><?= $company['industri']; ?></span></p>
                 </div>
-                <p class="__company-industri">Industri<span><?= $company['industri']; ?></span></p>
+                <div class="__company-detail-loc-situs">
+                    <p class="__company-situs">Situs<a href="<?= $company['situs']; ?>" target="__blank"><?= $company['situs']; ?></a></p>
+                    <p class="__company-telepon">No Telepon<span><?= $company['no_telepon']; ?></span></p>
+                </div>
             </div>
             <h2 class="__company-about">About <?= $company['nama_company']; ?></h2>
             <p class="__company-desc"><?= $company['deskripsi']; ?></p>
@@ -28,22 +31,24 @@
 <div class="__company-vacancy">
     <h1>Jobs Vacancy</h1>
     <div class="__company-vacancy-container">
-        <div class="__jobs-content-card card">
-            <div class="">
-                <div class="__company-detail-header card-body">
-                    <a href="" class="stretched-link">UI/UX Designer</a>
-                    <div class="__company-detail-text">
-                        <div class="__job-content-loc">
-                            <img src="<?= base_url(); ?>asset/icon/location.svg" alt="">
-                            <p>Jakarta <span>(Remote)</span></p>
-                        </div>
-                        <div class="__job-content-exp">
-                            <img src="<?= base_url(); ?>asset/icon/experiences.svg" alt="">
-                            <p>Mahasiswa</p>
+        <?php foreach ($company_job as $cj) : ?>
+            <div class="__jobs-content-card card">
+                <div class="">
+                    <div class="__company-detail-header card-body">
+                        <a href="<?= base_url(); ?>jobslist/detailJob/<?= $cj['id_job']; ?>" class="stretched-link"><?= $cj['nama_job']; ?></a>
+                        <div class="__company-detail-text">
+                            <div class="__job-content-loc">
+                                <img src="<?= base_url(); ?>asset/icon/location.svg" alt="">
+                                <p><?= $cj['lokasi']; ?> <span>(<?= $cj['tipe_kerja']; ?>)</span></p>
+                            </div>
+                            <div class="__job-content-exp">
+                                <img src="<?= base_url(); ?>asset/icon/experiences.svg" alt="">
+                                <p><?= $cj['batasan']; ?></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>

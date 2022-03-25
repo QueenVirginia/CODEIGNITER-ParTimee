@@ -683,6 +683,7 @@ span {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 20px;
+	row-gap: 20px;
 }
 
 .__company-detail-header {
@@ -714,22 +715,16 @@ span {
 	margin-top: 4px;
 }
 
-.__company-detail-text {
-	margin-top: 28px;
-}
-
 .__company-lokasi,
 .__company-situs,
-.__company-industri {
+.__company-industri,
+.__company-telepon {
 	font-size: 16px;
 	color: #9A9A9A;
 }
 
-.__company-industri {
-	margin-top: 12px;
-}
-
-.__company-lokasi span {
+.__company-lokasi span,
+.__company-telepon span {
 	font-size: 16px;
 	color: #303030;
 	margin-left: 30px;
@@ -741,15 +736,21 @@ span {
 	margin-left: 74px;
 }
 
+.__company-industri,
+.__company-telepon {
+	margin-top: 12px;
+}
+
 .__company-situs a {
 	color: #0D6EFD;
 	text-decoration: none;
-	margin-left: 20px;
+	margin-left: 80px;
 }
 
-.__company-detail-loc-situs {
+.__company-detail-text {
 	display: flex;
 	justify-content: space-between;
+	margin-top: 28px;
 }
 
 .__company-about {
@@ -796,7 +797,6 @@ span {
 	padding: 24px 32px;
 	background-color: #FFFFFF;
 	display: flex;
-	justify-content: space-around;
 }
 
 .__profile-photo {
@@ -811,7 +811,7 @@ span {
 }
 
 .__profile-name {
-	margin-left: 32px;
+	margin-left: 40px;
 }
 
 .__profile-name h1 {
@@ -825,6 +825,7 @@ span {
 }
 
 .__btn-edit-logout {
+	margin-top: 32px;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -833,7 +834,7 @@ span {
 
 .__btn-edit {
 	height: 53px;
-	width: 180px;
+	width: 100%;
 	padding: 16px;
 	font-size: 14px;
 	color: #FFFFFF;
@@ -871,11 +872,17 @@ span {
 .__profile-desc h1 {
 	font-size: 32px;
 	font-weight: 600;
-	margin-bottom: 32px;
+	margin-bottom: 12px;
 }
 
 .__profile-form {
 	margin-bottom: 32px;
+}
+
+.__profile-form .form-control:disabled {
+	background: rgba(216, 232, 255, 0.2);
+	border: #D8E8FF;
+	padding: 12px;
 }
 
 .__profile-form h2,

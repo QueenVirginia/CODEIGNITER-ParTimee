@@ -4,7 +4,7 @@ class Jobs_model extends CI_Model
 {
 
     public function GetAllJobs()
-    { 
+    {
         // $this->db->order_By('id_job', 'DESC');
         // $query = $this->db->get('Jobs');
         // return $query->result_array();
@@ -40,9 +40,13 @@ class Jobs_model extends CI_Model
     public function searchJob()
     {
         $keyword = $this->input->post('cari_kerja', TRUE);
+
+        $this->db->select('*');
+        $this->db->join('company', 'company.id_company = jobs.id_company');
         $this->db->like('nama_job', $keyword);
         $this->db->or_like('lokasi', $keyword);
-        $this->db->or_like('perusahaan', $keyword);
+        $this->db->or_like('nama_company', $keyword);
+        $this->db->or_like('rating', $keyword);
         $this->db->or_like('batasan', $keyword);
         $this->db->or_like('tipe_kerja', $keyword);
         return $this->db->get('jobs')->result_array();
@@ -51,9 +55,13 @@ class Jobs_model extends CI_Model
     public function countSearchJob()
     {
         $keyword = $this->input->post('cari_kerja', TRUE);
+
+        $this->db->select('*');
+        $this->db->join('company', 'company.id_company = jobs.id_company');
         $this->db->like('nama_job', $keyword);
         $this->db->or_like('lokasi', $keyword);
-        $this->db->or_like('perusahaan', $keyword);
+        $this->db->or_like('nama_company', $keyword);
+        $this->db->or_like('rating', $keyword);
         $this->db->or_like('batasan', $keyword);
         $this->db->or_like('tipe_kerja', $keyword);
         return $this->db->get('jobs')->count_all_results();

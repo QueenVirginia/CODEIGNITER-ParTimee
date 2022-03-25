@@ -30,6 +30,8 @@ class ForYou extends CI_Controller
     public function detail($id_company)
     {
         $data['company'] = $this->Company_model->getCompanyById($id_company);
+        $data['company_job'] = $this->Company_model->getCompanyJobById($id_company);
+
         $this->load->view('foryou/detail_company', $data);
     }
 

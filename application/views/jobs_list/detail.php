@@ -62,28 +62,24 @@
       <div class="__jobs-company-card __shadow">
         <img src="<?= base_url(); ?>asset/img/hero.png" class="card-img-top" alt="...">
         <div class="__jobs-company-body card-body">
-          <h1 class="card-title"><?= $jobs['nama_company']; ?> <span><?= $jobs['rating']; ?> <img src="<?= base_url(); ?>asset/icon/rating.svg" alt=""></span></h1>
+          <h1 class="card-title" style="margin-bottom: 8px;"><?= $jobs['nama_company']; ?> <span><?= $jobs['rating']; ?> <img src="<?= base_url(); ?>asset/icon/rating.svg" alt=""></span></h1>
           <div class="__job-content-detail">
             <div class="__job-content-loc">
               <img src="<?= base_url(); ?>asset/icon/location.svg" alt="" style="width: 20px; height: 20px;">
               <p><?= $jobs['kantor_pusat']; ?></p>
-            </div>
-            <div class="__job-content-exp">
-              <img src="<?= base_url(); ?>asset/icon/experiences.svg" alt="" style="width: 20px; height: 20px;">
-              <p>1 Lowongan</p>
             </div>
           </div>
         </div>
       </div>
       <div class="__jobs-company-desc">
         <p><?= $jobs['deskripsi']; ?>.</p>
-        <a href="<?= base_url(); ?>company/detail/jobs['id_company']" class="__btn-situs-website btn btn-outline-primary">View Detail</a>
+        <a href="<?= base_url(); ?>foryou/detail/<?= $jobs['id_company']; ?>" class="__btn-situs-website btn btn-outline-primary">View Detail</a>
       </div>
     </div>
   </div>
 
-    <!-- PopUp Apply -->
-    <!-- <div class="modal fade" id="popupApply" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <!-- PopUp Apply -->
+  <!-- <div class="modal fade" id="popupApply" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="__popup-apply modal-content">
         <div class="modal-header">
