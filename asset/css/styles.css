@@ -753,6 +753,10 @@ span {
 	margin-top: 28px;
 }
 
+.__column {
+	flex-direction: column;
+}
+
 .__company-about {
 	font-size: 20px;
 	font-weight: 600;

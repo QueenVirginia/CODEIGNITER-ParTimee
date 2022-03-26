@@ -1,10 +1,13 @@
-<?php 
+<?php
 
-class AboutUs extends CI_Controller {
+class AboutUs extends CI_Controller
+{
 
-    public function index() 
+    public function index()
     {
-        $this->load->view('templates/header');
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
         $this->load->view('aboutus/index');
         $this->load->view('templates/footer');
     }

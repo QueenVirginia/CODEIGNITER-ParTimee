@@ -8,6 +8,11 @@ class Admin extends CI_Controller
         parent::__construct();
         $this->load->model('Admin_model');
         $this->load->library('form_validation', 'upload');
+
+
+        // if (!$this->session->userdata('email')) {
+        //     redirect('auth');
+        // }
     }
 
     public function index()

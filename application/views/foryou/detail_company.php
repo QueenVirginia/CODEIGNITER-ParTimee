@@ -36,7 +36,7 @@
                 <div class="">
                     <div class="__company-detail-header card-body">
                         <a href="<?= base_url(); ?>jobslist/detailJob/<?= $cj['id_job']; ?>" class="stretched-link"><?= $cj['nama_job']; ?></a>
-                        <div class="__company-detail-text">
+                        <div class="__company-detail-text __column">
                             <div class="__job-content-loc">
                                 <img src="<?= base_url(); ?>asset/icon/location.svg" alt="">
                                 <p><?= $cj['lokasi']; ?> <span>(<?= $cj['tipe_kerja']; ?>)</span></p>

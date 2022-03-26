@@ -7,20 +7,20 @@ class ForYou extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Company_model');
-        $this->load->library('form_validation');
-        $this->load->view('templates/header');
-        $this->load->view('templates/footer');
     }
 
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['company'] = $this->Company_model->getAllCompany();
 
         if ($this->input->post('cari_company')) {
             $data['company'] = $this->Company_model->searchCompany();
         }
 
+        $this->load->view('templates/header', $data);
         $this->load->view('foryou/index', $data);
+        $this->load->view('templates/footer');
 
         // echo '<pre>';
         // var_dump($data);
@@ -29,10 +29,13 @@ class ForYou extends CI_Controller
 
     public function detail($id_company)
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['company'] = $this->Company_model->getCompanyById($id_company);
         $data['company_job'] = $this->Company_model->getCompanyJobById($id_company);
 
+        $this->load->view('templates/header', $data);
         $this->load->view('foryou/detail_company', $data);
+        $this->load->view('templates/footer');
     }
 
     // public function index()
