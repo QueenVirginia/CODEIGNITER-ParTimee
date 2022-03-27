@@ -7,12 +7,9 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Admin_model');
-        $this->load->library('form_validation', 'upload');
+        $this->load->library('upload');
 
-
-        // if (!$this->session->userdata('email')) {
-        //     redirect('auth');
-        // }
+        check_role_login();
     }
 
     public function index()
@@ -34,8 +31,49 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header_admin', $data);
-        $this->load->view('admin/profile');
+        $this->load->view('admin/profile', $data);
         $this->load->view('templates/footer_admin');
+    }
+
+    public function edit_profile()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header_admin', $data);
+            $this->load->view('admin/edit_profile', $data);
+            $this->load->view('templates/footer_admin');
+        } else {
+            $nama = $this->input->post('nama', true);
+            $email = $this->input->post('email', true);
+
+            $upload_image = $_FILES['foto']['name'];
+            // var_dump($upload_image);
+            // die;
+
+            if ($upload_image) {
+                $config['allowed_types'] = 'jpeg|jpg|png';
+                $config['max_size']     = '20048'; //2MB
+                $config['upload_path'] = './asset_admin/img/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('foto')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('foto', $new_image);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
+            $this->db->set('nama', $nama);
+            $this->db->where('email', $email);
+            $this->db->update('user');
+            $this->session->set_flashdata('flash', 'Edited');
+            redirect('admin/profile');
+        }
     }
 
     // =============================== USER ===============================
