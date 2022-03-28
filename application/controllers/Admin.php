@@ -7,7 +7,6 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Admin_model');
-        $this->load->library('upload');
 
         check_role_login();
     }
@@ -71,6 +70,7 @@ class Admin extends CI_Controller
             $this->db->set('nama', $nama);
             $this->db->where('email', $email);
             $this->db->update('user');
+
             $this->session->set_flashdata('flash', 'Edited');
             redirect('admin/profile');
         }

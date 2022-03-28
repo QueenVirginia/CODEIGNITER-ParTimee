@@ -54,7 +54,6 @@ class Profile extends CI_Controller
             $this->db->update('user');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">Success edit your profile! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
-
             redirect('profile');
         }
     }

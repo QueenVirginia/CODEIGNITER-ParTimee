@@ -1,4 +1,3 @@
-<!-- Page Heading -->
 <h1 class="h3 mb-4 pl-4 text-gray-800">Edit Profile</h1>
 
 <div class="mb-4 pl-4 col-md-6">

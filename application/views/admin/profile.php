@@ -12,7 +12,6 @@
 </div>
 
 <div class="card mb-3 ml-4" style="max-width: 540px;">
-    <!-- Pop Up Message -->
     <div class="row">
         <div class="col-md-4">
             <img src="<?= base_url('asset_admin/img/') . $user['foto']; ?>" class="img-fluid rounded-start" alt="...">
