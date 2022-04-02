@@ -127,6 +127,7 @@ class Admin extends CI_Controller
     public function add_job()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['company'] = $this->Admin_model->getAllCompany();
 
         $this->form_validation->set_rules('nama_job', 'Job Name', 'required');
         $this->form_validation->set_rules('lokasi', 'Location', 'required');
@@ -135,14 +136,40 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('deskripsi_job', 'Description', 'required');
         $this->form_validation->set_rules('benefit_job', 'Benefit', 'required');
         $this->form_validation->set_rules('link_apply', 'Apply Link', 'required');
-        // $this->form_validation->set_rules('logo', 'Logo', 'required');
+        $this->form_validation->set_rules('nama_company', 'Nama Company', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header_admin', $data);
-            $this->load->view('admin/add_job');
+            $this->load->view('admin/add_job', $data);
             $this->load->view('templates/footer_admin');
         } else {
-            $this->Admin_model->addDataJobs();
+            $nama_job = $this->input->post('nama_job', true);
+            $lokasi = $this->input->post('lokasi', true);
+            $batasan = $this->input->post('batasan', true);
+            $tipe_kerja = $this->input->post('tipe_kerja', true);
+            $deskripsi_job = $this->input->post('deskripsi_job', true);
+            $benefit_job = $this->input->post('benefit_job', true);
+            $link_apply = $this->input->post('link_apply', true);
+            $id_company = $this->input->post('nama_company', true);
+
+            if ($id_company) {
+                $this->db->select('id_company');
+                $this->db->where('nama_company', $id_company);
+                $query = $this->db->get('company')->row_array();
+
+                $this->db->set('id_company', $query['id_company']);
+            }
+
+            $this->db->set('nama_job', $nama_job);
+            $this->db->set('lokasi', $lokasi);
+            $this->db->set('batasan', $batasan);
+            $this->db->set('tipe_kerja', $tipe_kerja);
+            $this->db->set('deskripsi_job', $deskripsi_job);
+            $this->db->set('benefit_job', $benefit_job);
+            $this->db->set('link_apply', $link_apply);
+            $this->db->insert('jobs');
+
+            // $this->Admin_model->addDataJobs($query);
             $this->session->set_flashdata('flash', 'Added');
             redirect('admin/job_list');
         }
@@ -208,49 +235,9 @@ class Admin extends CI_Controller
 
     public function add_company()
     {
-        // $config['upload_path']         = './asset/company_logo/';  // folder upload 
-        // $config['allowed_types']        = 'gif|jpg|png'; // jenis file
-        // $config['max_size']             = 1024;
-        // $config['max_width']            = 700;
-        // $config['max_height']           = 700;
-
-        // $this->load->library('upload', $config);
-
-        // if ( !$this->upload->do_upload('logo')) //sesuai dengan name pada form 
-        // {
-        //        echo 'anda gagal upload';
-        // }
-        // else
-        // {
-        //     //tampung data dari form
-        //     $nama_company = $this->input->post('nama_company');
-        //     $kantor_pusat = $this->input->post('kantor_pusat');
-        //     $deskripsi = $this->input->post('deskripsi');
-        //     $industri = $this->input->post('industri');
-        //     $situs = $this->input->post('situs');
-        //     $no_telepon = $this->input->post('no_telepon');
-        //     $file= $this->upload->data();
-
-        //     $logo = $file['file_name'];
-
-        //     $this->admin_model->addDataCompany(array(
-        //         'nama_company' => $nama_company,
-        //         'kantor_pusat' => $kantor_pusat,
-        //         'deskripsi' => $deskripsi,
-        //         'industri' => $industri,
-        //         'situs' => $situs,
-        //         'no_telepon' => $no_telepon,
-        //         'logo' => $logo
-
-        //     ));
-        //     $this->session->set_flashdata('flash','Added');
-        //     redirect('admin/company_list');
-
-        // }
-
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        // $this->form_validation->set_rules('logo', 'Logo', 'required');
+        $this->form_validation->set_rules('logo', 'Logo', 'required');
         $this->form_validation->set_rules('nama_company', 'Company Name', 'required');
         $this->form_validation->set_rules('kantor_pusat', 'Office Base', 'required');
         $this->form_validation->set_rules('industri', 'Industry', 'required');
@@ -260,10 +247,43 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header_admin', $data);
-            $this->load->view('admin/add_company');
+            $this->load->view('admin/add_company', $data);
             $this->load->view('templates/footer_admin');
         } else {
-            $this->Admin_model->addDataCompany();
+            $nama_company = $this->input->post('nama_company', true);
+            $kantor_pusat = $this->input->post('kantor_pusat', true);
+            $industri = $this->input->post('industri', true);
+            $situs = $this->input->post('situs', true);
+            $no_telepon = $this->input->post('no_telepon', true);
+            $deskripsi = $this->input->post('deskripsi', true);
+
+            $upload_image = $_FILES['logo']['name'];
+            // var_dump($upload_image);
+            // die;
+
+            if ($upload_image) {
+                $config['allowed_types'] = 'jpeg|jpg|png';
+                $config['max_size']     = '20048'; //2MB
+                $config['upload_path'] = './asset/company_img/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('logo')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('logo', $new_image);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
+            $this->db->set('nama_company', $nama_company);
+            $this->db->set('kantor_pusat', $kantor_pusat);
+            $this->db->set('industri', $industri);
+            $this->db->set('situs', $situs);
+            $this->db->set('no_telepon', $no_telepon);
+            $this->db->set('deskripsi', $deskripsi);
+            $this->db->insert('company');
+
             $this->session->set_flashdata('flash', 'Added');
             redirect('admin/company_list');
         }
@@ -289,7 +309,6 @@ class Admin extends CI_Controller
     public function edit_company($id_company)
     {
         $data['company'] = $this->Admin_model->getCompanyById($id_company);
-        // $data['industri'] = ['Remote', 'Hybrid', 'On-Site'];
 
         $this->form_validation->set_rules('nama_company', 'Company Name', 'required');
         $this->form_validation->set_rules('kantor_pusat', 'Office Base', 'required');
@@ -297,7 +316,6 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('industri', 'Industry', 'required');
         $this->form_validation->set_rules('situs', 'Site', 'required');
         $this->form_validation->set_rules('no_telepon', 'Phone Number', 'required');
-        // $this->form_validation->set_rules('logo', 'Logo', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

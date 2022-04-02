@@ -24,11 +24,14 @@
                         <div class=" form-text text-danger"><?= form_error('batasan'); ?>
                         </div>
                     </div>
-                    <!-- <div class="form-group mt-3">
-                            <label for="tipe_kerja">Job Type</label>
-                            <input type="text" name="tipe_kerja" class="form-control" id="tipe_kerja">
-                            <div class="form-text text-danger"><?= form_error('tipe_kerja'); ?></div>
-                        </div> -->
+                    <div class="form-group mt-3">
+                        <label for="nama_company" class="form-label">Company Name</label>
+                        <select id="nama_company" class="custom-select" name="nama_company">
+                            <?php foreach ($company as $nc) : ?>
+                                <option value="<?= $nc['nama_company']; ?>" selected><?= $nc['nama_company']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     <div class="form-group mt-3">
                         <label for="tipe_kerja" class="form-label">Job Type</label>
                         <select id="tipe_kerja" class="custom-select" name="tipe_kerja">

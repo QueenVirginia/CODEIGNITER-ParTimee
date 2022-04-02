@@ -27,7 +27,7 @@
                 </li>
                 <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">Benefit</h6>
-                    <h5 class="mb-0 card-title text-primary"><textarea class="form-control text-primary"  rows="5" disabled><?= $jobs['benefit_job']; ?></textarea></h5>
+                    <h5 class="mb-0 card-title text-primary"><textarea class="form-control text-primary" rows="5" disabled><?= $jobs['benefit_job']; ?></textarea></h5>
                 </li>
                 <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">Apply Link</h6>
@@ -35,7 +35,7 @@
                 </li>
                 <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">Company</h6>
-                    <h5 class="mb-0 card-title text-primary"><?= $jobs['id_company']; ?></h5>
+                    <h5 class="mb-0 card-title text-primary"><?= $jobs['nama_company']; ?></h5>
                 </li>
             </ul>
         </div>

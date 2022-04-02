@@ -12,7 +12,6 @@
                     <p class="card-text text-muted"><?= $jobs['rating']; ?></p>
                     <p class="card-text text-muted"><?= $jobs['tipe_kerja']; ?></p>
                     <p class="card-text text-muted"><?= $jobs['deskripsi_job']; ?></p>
-                    <p class="card-text text-muted"><?= $jobs['kualifikasi_job']; ?></p>
                     <p class="card-text text-muted"><?= $jobs['benefit_job']; ?></p>
                     <a href="<?= base_url(); ?>foryou" class="btn btn-primary">Kembali</a>
                 </div>

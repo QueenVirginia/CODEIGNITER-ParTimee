@@ -1,11 +1,12 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-4 pl-4 text-gray-800">Add New Company</h1>
 
-<form class="mb-4 pl-4 col-md-8" method="POST">
+<div class="mb-4 pl-4 col-md-8">
+    <?= form_open_multipart('admin/add_company') ?>
     <div class="form-group mt-3">
         <label for="logo">Logo</label>
         <input type="file" name="logo" class="form-control" id="logo" style="height: fit-content;">
-        <!-- <div class="form-text text-danger"><?= form_error('logo'); ?></div> -->
+        <div class="form-text text-danger"><?= form_error('logo'); ?></div>
     </div>
     <div class="form-group mt-3">
         <label for="nama_company">Company Name</label>
@@ -28,7 +29,7 @@
         <div class="form-text text-danger"><?= form_error('situs'); ?></div>
     </div>
     <div class="form-group mt-3">
-        <label for="no_telepon">Phone_Number</label>
+        <label for="no_telepon">Phone Number</label>
         <input type="text" name="no_telepon" class="form-control" id="no_telepon">
         <div class="form-text text-danger"><?= form_error('no_telepon'); ?></div>
     </div>
@@ -37,5 +38,6 @@
         <textarea name="deskripsi" class="form-control" id="deskripsi" rows="5"></textarea>
         <div class="form-text text-danger"><?= form_error('deskripsi'); ?></div>
     </div>
-    <button type="submit" name="add_job" class="btn btn-primary float-end">Save Job</button>
-</form>
+    <button type="submit" name="add_company" class="btn btn-primary float-end">Save Job</button>
+    </form>
+</div>

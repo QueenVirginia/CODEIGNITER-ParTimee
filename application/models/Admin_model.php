@@ -46,7 +46,21 @@ class Admin_model extends CI_Model
 
     public function getJobById($id_job)
     {
-        return $this->db->get_where('jobs', ['id_job' => $id_job])->row_array();
+        $this->db->select('jobs.id_job, jobs.nama_job, jobs.lokasi, jobs.tipe_kerja, jobs.batasan, jobs.deskripsi_job, jobs.benefit_job, jobs.link_apply, company.nama_company as nama_company');
+        $this->db->from('jobs');
+        $this->db->join('company', 'company.id_company = jobs.id_company');
+        $this->db->where('id_job', $id_job);
+        return $this->db->get()->row_array();
+    }
+
+    public function getJobsRow($id_job)
+    {
+        $this->db->select('*');
+        $this->db->from('jobs');
+        $this->db->join('company', 'company.id_company = jobs.id_company');
+        $this->db->where('id_job', $id_job);
+        $query = $this->db->get();
+        return $query->row_array();
     }
 
     public function countDataJobs()
@@ -74,7 +88,8 @@ class Admin_model extends CI_Model
             "tipe_kerja" => $this->input->post('tipe_kerja', true),
             "deskripsi_job" => $this->input->post('deskripsi_job', true),
             "benefit_job" => $this->input->post('benefit_job', true),
-            "link_apply" => $this->input->post('link_apply', true)
+            "link_apply" => $this->input->post('link_apply', true),
+            "id_company" => $this->input->post('id_company', true)
         ];
 
         $this->db->insert('jobs', $data);
@@ -111,6 +126,18 @@ class Admin_model extends CI_Model
         return $query->result_array();
     }
 
+    // public function getAllCompanyJoin()
+    // {
+    //     $this->db->select('count(company.id_company) as count, company.id_company, company.nama_company, company.rating, company.kantor_pusat');
+    //     $this->db->from('company');
+    //     $this->db->join('jobs', 'jobs.id_company = company.id_company');
+    //     $this->db->group_by('jobs.id_company');
+    //     $this->db->order_By('nama_company', 'ASC');
+    //     $query = $this->db->get();
+
+    //     return $query->result_array();
+    // }
+
     public function getCompanyById($id_company)
     {
         return $this->db->get_where('company', ['id_company' => $id_company])->row_array();
@@ -132,39 +159,24 @@ class Admin_model extends CI_Model
         return $this->db->get('company')->result_array();
     }
 
-    public function upload()
-    {
-        $config['upload_path'] = './asset/company_logo';
-        $config['allowed_types'] = 'jpg|png|jpeg';
-        $config['max_size']  = '2048';
-        $config['remove_space'] = TRUE;
+    // public function upload()
+    // {
+    //     $config['upload_path'] = './asset/company_logo';
+    //     $config['allowed_types'] = 'jpg|png|jpeg';
+    //     $config['max_size']  = '2048';
+    //     $config['remove_space'] = TRUE;
 
-        $this->load->library('upload', $config); // Load konfigurasi uploadnya
-        if ($this->upload->do_upload('input_gambar')) { // Lakukan upload dan Cek jika proses upload berhasil
-            // Jika berhasil :
-            $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
-            return $return;
-        } else {
-            // Jika gagal :
-            $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
-            return $return;
-        }
-    }
-
-    public function addDataCompany()
-    {
-        $data = [
-            "nama_company" => $this->input->post('nama_company', true),
-            "kantor_pusat" => $this->input->post('kantor_pusat', true),
-            "deskripsi" => $this->input->post('deskripsi', true),
-            "industri" => $this->input->post('industri', true),
-            "situs" => $this->input->post('situs', true),
-            "no_telepon" => $this->input->post('no_telepon', true)
-            // "logo" => $upload['file']['file_type']
-        ];
-
-        $this->db->insert('company', $data);
-    }
+    //     $this->load->library('upload', $config); // Load konfigurasi uploadnya
+    //     if ($this->upload->do_upload('input_gambar')) { // Lakukan upload dan Cek jika proses upload berhasil
+    //         // Jika berhasil :
+    //         $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+    //         return $return;
+    //     } else {
+    //         // Jika gagal :
+    //         $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
+    //         return $return;
+    //     }
+    // }
 
     public function deleteDataCompany($id_company)
     {
@@ -181,7 +193,6 @@ class Admin_model extends CI_Model
             "industri" => $this->input->post('industri', true),
             "situs" => $this->input->post('situs', true),
             "no_telepon" => $this->input->post('no_telepon', true)
-            // "logo" => $this->input->post('logo', true)
         ];
 
         // Ngambil dari id yang hidden

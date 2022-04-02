@@ -8,7 +8,7 @@
                 <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">Company Logo</h6>
                     <h5 class="mb-0 card-title text-primary">
-                        <img src="<?= base_url(); ?>asset/img/background.jpg" alt="" width="200px" height="200px">
+                        <img src="<?= base_url('asset/company_img/') . $company['logo']; ?>" alt="" width="200px" height="200px">
                     </h5>
                 </li>
                 <li class="list-group-item">
