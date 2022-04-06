@@ -28,7 +28,7 @@
     <?php foreach ($jobs as $j) : ?>
       <div class="__jobs-content-card card">
         <div class="__jobs-content-text">
-          <img src="<?= base_url(); ?>asset/img/hero.png" class="card-img-top" alt="">
+          <img src="<?= base_url('asset/company_img/') . $j['logo']; ?>" class="card-img-top" alt="">
           <div class="__job-content-header card-body">
             <a href="<?= base_url(); ?>jobslist/detailJob/<?= $j['id_job']; ?>" class="stretched-link"><?= $j['nama_job']; ?></a>
             <p>

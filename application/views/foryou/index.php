@@ -2,11 +2,13 @@
     <h1>Recommended Company For You</h1>
 </div>
 
+<?php foreach ($rec as $nama_job=>$rating) : ?>
+
 <div class="__rec-company">
     <div class="__jobs-company-card __rec-company-card">
         <img src="asset/img/hero.png" class="card-img-top" alt="...">
         <div class="__jobs-company-body card-body">
-            <a class="card-title">Tokopedia <span>4.5 <img src="asset/icon/rating.svg" alt=""></span></a>
+            <a class="card-title"><p><?= $nama_job; ?></p><span><p><?= $rating; ?></p><img src="asset/icon/rating.svg" alt=""></span></a>
             <div class="__job-content-detail">
                 <div class="__job-content-loc">
                     <img src="asset/icon/location.svg" alt="" style="width: 20px; height: 20px;">
@@ -21,6 +23,8 @@
     </div>
 </div>
 
+<?php endforeach ?>
+
 <div class="__subheader">
     <h1>Company</h1>
 </div>
@@ -28,7 +32,7 @@
 <div class="__rec-company">
     <?php foreach ($company as $c) : ?>
         <div class="__jobs-company-card __rec-company-card card">
-            <img src="asset/img/hero.png" class="card-img-top" alt="...">
+            <img src="<?= base_url('asset/company_img/') . $c['logo']; ?>" class="card-img-top" alt="...">
             <div class="__jobs-company-body card-body">
                 <a href="<?= base_url(); ?>foryou/detail/<?= $c['id_company']; ?>" style="text-decoration: none; color: #424242;" class="stretched-link"><?= $c['nama_company']; ?></a>
                 <span><?= $c['rating']; ?> <img src="asset/icon/rating.svg" alt=""></span>

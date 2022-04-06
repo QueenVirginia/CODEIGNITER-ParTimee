@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse float-end" id="navbarNavAltMarkup" style="justify-content: center;">
                 <div class="navbar-nav">
                     <a class="nav-link" aria-current="page" href="<?= base_url() ?>jobslist">Jobs</a>
-                    <a class="nav-link" href="<?= base_url() ?>foryou">For You</a>
+                    <a class="nav-link" href="<?= base_url() ?>foryou">Company</a>
                     <a class="nav-link" href="<?= base_url() ?>aboutus">About Us</a>
                 </div>
             </div>

@@ -5,7 +5,7 @@
   <div class="__jobs-description">
     <div class="__jobs-description-card card">
       <div class="__jobs-description-text">
-        <img src="<?= base_url(); ?>asset/img/aboutus.jpg" class="__jobs-img card-img-top" alt="...">
+        <img src="<?= base_url('asset/company_img/') . $jobs['logo']; ?>" class="__jobs-img card-img-top" alt="...">
         <div class="__jobs-description-header card-body">
           <div class="__jobs-title-company">
             <h1><?= $jobs['nama_job']; ?></h1>
@@ -35,32 +35,20 @@
       </div>
       <hr style="margin-top: 24px; margin-bottom: 24px; border-color: #9A9A9A">
       <div class="__jobs-description-content">
-        <div class="__desc-title">
+        <div class="__desc-title mb-4">
           <h1>Description</h1>
-          <p><?= $jobs['deskripsi_job']; ?></p>
+          <textarea class="form-control __textarea" rows="10" disabled><?= $jobs['deskripsi_job']; ?></textarea>
         </div>
-        <!-- <div class="__desc-title">
-          <h1>Qualification</h1>
-          <ul>
-            <li><?= $jobs['kualifikasi_job']; ?></li>
-            <li>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</li>
-            <li>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</li>
-          </ul>
-        </div> -->
         <div class="__desc-title">
           <h1>Benefit</h1>
-          <ul>
-            <li><?= $jobs['benefit_job']; ?></li>
-            <li>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</li>
-            <li>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</li>
-          </ul>
+            <textarea class="form-control __textarea" rows="10" disabled><?= $jobs['benefit_job']; ?></textarea>
         </div>
       </div>
     </div>
     <div class="__jobs-company card">
       <h1>About Company</h1>
       <div class="__jobs-company-card __shadow">
-        <img src="<?= base_url(); ?>asset/img/hero.png" class="card-img-top" alt="...">
+        <img src="<?= base_url('asset/company_img/') . $jobs['logo']; ?>" class="card-img-top" alt="...">
         <div class="__jobs-company-body card-body">
           <h1 class="card-title" style="margin-bottom: 8px;"><?= $jobs['nama_company']; ?> <span><?= $jobs['rating']; ?> <img src="<?= base_url(); ?>asset/icon/rating.svg" alt=""></span></h1>
           <div class="__job-content-detail">

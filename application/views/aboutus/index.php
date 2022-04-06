@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="__aboutus-content-contactus">
-        <div class="__aboutus-get-in-touch" style="margin-bottom: 20px;">
+        <!-- <div class="__aboutus-get-in-touch" style="margin-bottom: 20px;">
             <div class="__aboutus-card card">
                 <div class="__aboutus-card-body card-body">
                     <h5 class="__aboutus-title card-title">Get In Touch</h5>
@@ -43,7 +43,7 @@
                     <button type="submit" class="btn btn-primary w-100">Submit</button>
                 </form>
             </div>
-        </div>
+        </div> -->
         <div class="__aboutus-content-email" style="margin-bottom: 20px;">
             <div class="__aboutus-card card">
                 <div class="__aboutus-card-body card-body">

@@ -998,3 +998,8 @@ span {
 	background-color: #0D6EFD;
 	border-radius: 0;
 }
+
+.__textarea {
+	background-color: white !important;
+	border: none;
+}

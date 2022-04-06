@@ -22,7 +22,7 @@
     </div>
     <div class="__company-detail-card __height">
         <div class="card-body __sizeof">
-            <img src="<?= base_url(); ?>asset/img/background.jpg" alt="" style="width: 200px; height: 200px">
+            <img src="<?= base_url('asset/company_img/') . $company['logo']; ?>" alt="" style="width: 200px; height: 200px">
             <p class="__rating">Rating <?= $company['rating']; ?><img src="<?= base_url(); ?>asset/icon/rating.svg" alt="" style="width: 24px; height: 24px"></p>
         </div>
     </div>

@@ -4,104 +4,87 @@ class Test extends CI_Controller
 {
     public function index()
     {
-        // $this->load->model('Test_model');
-        // $data['test'] = $this->Test_model->test();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('test', $data);
 
-        $this->load->view('test');
+        $this->db->select('*');
+        $this->db->from('algo');
+        $this->db->join('jobs', 'jobs.id_job= algo.id_job');
+        $this->db->join('user', 'user.id_user= algo.id_user');
+        $algos = $this->db->get()->result_array();
 
-        // echo '<pre>';
-        // var_dump($data);
-        // echo '</pre>';
+        foreach($algos as $alg)
+        {
+            $matrix[$alg['nama']][$alg['nama_job']] = $alg['rating'];
+        }
+ 
+        echo '<pre>';
+        var_dump($this->getRecommendations($matrix, "Jonny"));
+        echo '</pre>';
+
     }
 
+    private function similarity_distance($matrix, $person1, $person2)
+    {
+        $similar = array();
+        $sum = 0;
 
-    // public function similarity($preferences, $person1, $person2)
-    // {
-    //     $similar = 0;
-    //     $sum = 0;
+        foreach ($matrix[$person1] as $key => $value) {
+            if (array_key_exists($key, $matrix[$person2])) {
+                $similar[$key] = 1;
+            }
+        }
 
-    //     foreach ($preferences[$person1] as $key => $value) {
-    //         if (array_key_exists($key, $preferences[$person2]))
-    //             $similar[$key] = 1;
-    //     }
+        if (($similar) == 0) {
+            return 0;
+        }
 
-    //     if (count($similar) == 0)
-    //         return 0;
+        // Eucalidean Distance
+        foreach ($matrix[$person1] as $key => $value) {
+            if (array_key_exists($key, $matrix[$person2])) {
+                $sum = $sum + pow($value - $matrix[$person2][$key], 2);
+            }
+        }
 
-    //     foreach ($preferences[$person1] as $key => $value) {
-    //         if (array_key_exists($key, $preferences[$person2]))
-    //             $sum = $sum + pow($value - $preferences[$person2][$key], 2);
-    //     }
+        // Similarity
+        return 1 / (1 + sqrt($sum));
+    }
 
-    //     return  1 / (1 + sqrt($sum));
-    // }
+    private function getRecommendations($matrix, $person)
+    {
+        $total = array();
+        $simsum = array();
+        $ranks = array();
 
-    // public function matchItems($preferences, $person)
-    // {
-    //     $score = array();
+        foreach ($matrix as $otherPerson => $value) {
+            if ($otherPerson != $person) {
+                $sim = $this->similarity_distance($matrix, $person, $otherPerson);
+                var_dump($sim);
 
-    //     foreach ($preferences as $otherPerson => $values) {
-    //         if ($otherPerson !== $person) {
-    //             $sim = $this->similarity($preferences, $person, $otherPerson);
+                foreach ($matrix[$otherPerson] as $key => $value) {
+                    if (!array_key_exists($key, $matrix[$person])) {
+                        if (!array_key_exists($key, $total)) {
+                            $total[$key] = 0;
+                        }
 
-    //             if ($sim > 0)
-    //                 $score[$otherPerson] = $sim;
-    //         }
-    //     }
+                        $total[$key] += $matrix[$otherPerson][$key] * $sim;
 
-    //     array_multisort($score, SORT_DESC);
-    //     return $score;
-    // }
+                        if (!array_key_exists($key, $simsum)) {
+                            $simsum[$key] = 0;
+                        }
 
+                        $simsum[$key] += $sim;
+                    }
+                }
+            }
+        }
 
-    // public function transformPreferences($preferences)
-    // {
-    //     $result = array();
+        foreach ($total as $key => $value) {
+            $ranks[$key] = $value / $simsum[$key];
+        }
 
-    //     foreach ($preferences as $otherPerson => $values) {
-    //         foreach ($values as $key => $value) {
-    //             $result[$key][$otherPerson] = $value;
-    //         }
-    //     }
+        array_multisort($ranks, SORT_DESC);
 
-    //     return $result;
-    // }
-
-
-    // public function getRecommendations($preferences, $person)
-    // {
-    //     $total = array();
-    //     $simSums = array();
-    //     $ranks = array();
-    //     $sim = 0;
-
-    //     foreach ($preferences as $otherPerson => $values) {
-    //         if ($otherPerson != $person) {
-    //             $sim = $this->similarity($preferences, $person, $otherPerson);
-    //         }
-
-    //         if ($sim > 0) {
-    //             foreach ($preferences[$otherPerson] as $key => $value) {
-    //                 if (!array_key_exists($key, $preferences[$person])) {
-    //                     if (!array_key_exists($key, $total)) {
-    //                         $total[$key] = 0;
-    //                     }
-    //                     $total[$key] += $preferences[$otherPerson][$key] * $sim;
-
-    //                     if (!array_key_exists($key, $simSums)) {
-    //                         $simSums[$key] = 0;
-    //                     }
-    //                     $simSums[$key] += $sim;
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     foreach ($total as $key => $value) {
-    //         $ranks[$key] = $value / $simSums[$key];
-    //     }
-
-    //     array_multisort($ranks, SORT_DESC);
-    //     return $ranks;
-    // }
+        return $ranks;
+    }
 }

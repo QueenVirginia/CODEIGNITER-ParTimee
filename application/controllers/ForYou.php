@@ -18,13 +18,97 @@ class ForYou extends CI_Controller
             $data['company'] = $this->Company_model->searchCompany();
         }
 
+        $this->db->select('*');
+        $this->db->from('algo');
+        $this->db->join('jobs', 'jobs.id_job= algo.id_job');
+        $this->db->join('user', 'user.id_user= algo.id_user');
+        $algos = $this->db->get()->result_array();
+
+
+        // Select nama user yang menampilkan nama_job dan rating
+        foreach($algos as $alg)
+        {
+            $matrix[$alg['nama']][$alg['nama_job']] = $alg['rating'];
+        }
+
+        // Ambil nama user aktif
+        $this->db->select('nama');
+        $this->db->from('user');
+        $this->db->where('email', $this->session->userdata('email'));
+        $nama_user = $this->db->get()->row_array();
+
+        // Ubah Array menjadi String
+        $new_nama = implode(" ", $nama_user);
+
+        $data['rec'] = $this->getRecommendations($matrix, $new_nama);
+
         $this->load->view('templates/header', $data);
         $this->load->view('foryou/index', $data);
         $this->load->view('templates/footer');
+    }
 
-        // echo '<pre>';
-        // var_dump($data);
-        // echo '</pre>';
+    private function similarity_distance($matrix, $person1, $person2)
+    {
+        $similar = array();
+        $sum = 0;
+
+        foreach ($matrix[$person1] as $key => $value) {
+            if (array_key_exists($key, $matrix[$person2])) {
+                $similar[$key] = 1;
+            }
+        }
+
+        if (($similar) == 0) {
+            return 0;
+        }
+
+        // Eucalidean Distance
+        foreach ($matrix[$person1] as $key => $value) {
+            if (array_key_exists($key, $matrix[$person2])) {
+                $sum = $sum + pow($value - $matrix[$person2][$key], 2);
+            }
+        }
+
+        // Similarity
+        return 1 / (1 + sqrt($sum));
+    }
+
+    private function getRecommendations($matrix, $person)
+    {
+        $total = array();
+        $simsum = array();
+        $ranks = array();
+
+        foreach ($matrix as $otherPerson => $value) {
+            if ($otherPerson != $person) {
+                $sim = $this->similarity_distance($matrix, $person, $otherPerson);
+                // var_dump($sim);
+
+                foreach ($matrix[$otherPerson] as $key => $value) {
+                    if (!array_key_exists($key, $matrix[$person])) {
+                        if (!array_key_exists($key, $total)) {
+                            $total[$key] = 0;
+                        }
+
+                        $total[$key] += $matrix[$otherPerson][$key] * $sim;
+
+                        if (!array_key_exists($key, $simsum)) {
+                            $simsum[$key] = 0;
+                        }
+
+                        $simsum[$key] += $sim;
+                    }
+                }
+            }
+        }
+
+        foreach ($total as $key => $value) {
+            $ranks[$key] = $value / $simsum[$key];
+        }
+
+        array_multisort($ranks, SORT_DESC);
+
+        return $ranks;
     }
 
     public function detail($id_company)
@@ -37,77 +121,4 @@ class ForYou extends CI_Controller
         $this->load->view('foryou/detail_company', $data);
         $this->load->view('templates/footer');
     }
-
-    // public function index()
-    // {
-    //     $data['jobs'] = $this->Jobs_model->getAllJobs();
-
-    //     if( $this->input->post('keyword') ) {
-    //         $data['jobs'] = $this->Jobs_model->cariDataJobs();
-    //     }
-
-    //     $this->load->view('templates/header');
-    //     $this->load->view('foryou/index', $data);
-    //     $this->load->view('templates/footer');
-    // }
-
-    // public function tambah()
-    // {
-    //     $data['judul'] = "Form Tambah Data Jobs";
-
-    //     $this->form_validation->set_rules('nama_job', 'Nama Job', 'required');
-    //     $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required');
-    //     if ($this->form_validation->run() == FALSE) 
-    //     {
-    //         $this->load->view('templates/header', $data);
-    //         $this->load->view('foryou/tambah');
-    //         $this->load->view('templates/footer');
-    //     } 
-    //     else 
-    //     {
-    //         $this->Jobs_model->tambahDataJobs();
-    //         $this->session->set_flashdata('flash', 'Ditambahkan');
-    //         redirect('foryou');  
-    //     }
-    // }
-
-    // public function hapus($id_job) 
-    // {
-    //     $this->Jobs_model->hapusDataJobs($id_job);
-    //     $this->session->set_flashdata('flash', 'Dihapus');
-    //     redirect('foryou');  
-    // }
-
-    // public function detail($id_job)
-    // {
-    //     $data['judul'] = 'Detail Mahasiswa';
-    //     $data['jobs'] = $this->Jobs_model->getJobById($id_job);
-    //     $this->load->view('templates/header', $data);
-    //     $this->load->view('foryou/detail', $data);
-    //     $this->load->view('templates/footer');
-    // }
-
-    // public function ubah($id_job)
-    // {
-    //     $data['judul'] = "Form Ubah Data Jobs";
-    //     $data['jobs'] = $this->Jobs_model->getJobById($id_job);   
-    //     $data['lokasi'] = ['Jakarta', 'Bandung', 'Bekasi'];
-
-    //     $this->form_validation->set_rules('nama_job', 'Nama Job', 'required');
-    //     $this->form_validation->set_rules('perusahaan', 'Perusahaan', 'required');
-
-    //     if ($this->form_validation->run() == FALSE) 
-    //     {
-    //         $this->load->view('templates/header', $data);
-    //         $this->load->view('foryou/ubah', $data);
-    //         $this->load->view('templates/footer');
-    //     } 
-    //     else 
-    //     {
-    //         $this->Jobs_model->ubahDataJobs();
-    //         $this->session->set_flashdata('flash', 'Diubah');
-    //         redirect('foryou');  
-    //     }
-    // }
-
 }

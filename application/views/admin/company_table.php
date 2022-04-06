@@ -52,22 +52,11 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Company ID</th>
-                            <th>Logo</th>
-                            <th>Company Name</th>
-                            <th>Base Office</th>
-                            <th>Rating</th>
-                            <th>Industry</th>
-                            <th>Action</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         <?php if (empty($company)) : ?>
                             <div class="__empty-state mb-4 text-center">
                                 <h1>Sorry</h1>
-                                <p class="text-muted">We can't find the jobs your looking for,</p>
+                                <p class="text-muted">We can't find the company your looking for,</p>
                                 <a href="<?= base_url(); ?>admin/company_list" class="__btn-back-to-jobs btn btn-primary">Go Back</a>
                             </div>
                         <?php endif; ?>
@@ -75,7 +64,7 @@
                         <?php foreach ($company as $c) : ?>
                             <tr>
                                 <td><?= $c['id_company']; ?></td>
-                                <td><?= $c['logo']; ?></td>
+                                <td><img src="<?= base_url('asset/company_img/') . $c['logo']; ?>" width="60px" height="60px"></td>
                                 <td><?= $c['nama_company']; ?></td>
                                 <td><?= $c['kantor_pusat']; ?></td>
                                 <td><?= $c['rating']; ?></td>
