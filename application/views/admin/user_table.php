@@ -34,10 +34,10 @@
                     <thead>
                         <tr>
                             <th>User ID</th>
+                            <th>Photo</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone Number</th>
-                            <th>CV</th>
+                            <!-- <th>CV</th> -->
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -53,10 +53,10 @@
                         <?php foreach ($user_data as $u) : ?>
                             <tr>
                                 <td><?= $u['id_user']; ?></td>
+                                <td><img src="<?= base_url('asset/profile_img/') . $u['foto']; ?>" width="60px" height="60px"></td>
                                 <td><?= $u['nama']; ?></td>
                                 <td><?= $u['email']; ?></td>
-                                <td><?= $u['no_telepon']; ?></td>
-                                <td><?= $u['cv']; ?></td>
+                                <!-- <td><?= $u['cv']; ?></td> -->
                                 <td>
                                     <a href="<?= base_url(); ?>admin/detail_user/<?= $u['id_user']; ?>" class="btn btn-primary">Detail</a>
                                     <a href="<?= base_url(); ?>admin/delete_user/<?= $u['id_user']; ?>" class="btn btn-danger">Delete</a>

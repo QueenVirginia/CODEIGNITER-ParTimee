@@ -14,7 +14,7 @@
 <div class="card mb-3 ml-4" style="max-width: 540px;">
     <div class="row">
         <div class="col-md-4">
-            <img src="<?= base_url('asset_admin/img/') . $user['foto']; ?>" class="img-fluid rounded-start" alt="...">
+            <img src="<?= base_url('asset/profile_img/') . $user['foto']; ?>" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-8">
             <div class="card-body">

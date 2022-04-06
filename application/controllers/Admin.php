@@ -55,7 +55,7 @@ class Admin extends CI_Controller
             if ($upload_image) {
                 $config['allowed_types'] = 'jpeg|jpg|png';
                 $config['max_size']     = '20048'; //2MB
-                $config['upload_path'] = './asset_admin/img/';
+                $config['upload_path'] = './asset/profile_img/';
 
                 $this->load->library('upload', $config);
 
