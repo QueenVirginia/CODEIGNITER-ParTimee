@@ -1,4 +1,8 @@
-<div class="__profile">
+<div class="__jobs-back">
+    <a href="<?= base_url(); ?>profile"><img src="<?= base_url(); ?>asset/icon/back.svg" alt="" style="width: 24px; height: 24px;">Back</a>
+</div>
+
+<div class="__profile" style="margin-top: 24px;">
     <div class="__profile-header">
         <h1>Edit Profile</h1>
     </div>

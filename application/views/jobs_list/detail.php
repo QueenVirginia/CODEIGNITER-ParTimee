@@ -1,7 +1,6 @@
   <div class="__jobs-back">
     <a href="<?= base_url(); ?>jobslist"><img src="<?= base_url(); ?>asset/icon/back.svg" alt="" style="width: 24px; height: 24px;">Back</a>
   </div>
-
   <div class="__jobs-description">
     <div class="__jobs-description-card card">
       <div class="__jobs-description-text">
@@ -28,8 +27,12 @@
             </div>
           </div>
           <div class="__jobs-description-button">
-            <button type="button" class="__btn-apply btn btn-primary" data-bs-toggle="modal" data-bs-target="#popupApply">Apply Now</button>
-            <!-- <button type="button" class="__btn-share btn btn-outline-primary"><img src="<?= base_url(); ?>asset/icon/share.svg" alt="">Share</button> -->
+            <form action="" method="POST">
+              <input type="hidden" class="form-control" name="id_company" value="<?= $jobs['id_job']; ?>">
+              <!-- <input type="text" class="form-control" id="apply" name="apply" value="1" hidden> -->
+              <input type="submit" name="addApply" class="__btn-apply btn btn-primary" target="_blank" onclick="">Apply Now</a>
+              <!-- <button type="button" class="__btn-share btn btn-outline-primary"><img src="<?= base_url(); ?>asset/icon/share.svg" alt="">Share</button> -->
+            </form>
           </div>
         </div>
       </div>
@@ -41,7 +44,7 @@
         </div>
         <div class="__desc-title">
           <h1>Benefit</h1>
-            <textarea class="form-control __textarea" rows="10" disabled><?= $jobs['benefit_job']; ?></textarea>
+          <textarea class="form-control __textarea" rows="10" disabled><?= $jobs['benefit_job']; ?></textarea>
         </div>
       </div>
     </div>

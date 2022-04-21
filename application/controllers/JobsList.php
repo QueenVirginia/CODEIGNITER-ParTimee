@@ -39,4 +39,25 @@ class JobsList extends CI_Controller
         $this->load->view('jobs_list/detail', $data);
         $this->load->view('templates/footer');
     }
+
+    public function addApply($id_job)
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['jobs'] = $this->Jobs_model->getJobsRow($id_job);
+
+        echo '$data';
+
+        if ($this->input->post('id_company')) {
+            $id_company = $this->input->post('id_company');
+            $id_user = $this->input->post('id_user');
+
+            $this->db->set('id_user', $id_user);
+            $this->db->set('id_company', $id_company);
+            $this->db->insert('apply');
+        }
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('jobs_list/detail', $data);
+        $this->load->view('templates/footer');
+    }
 }

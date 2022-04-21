@@ -338,7 +338,7 @@ span {
 	margin-top: 32px;
 }
 
-.__jobs-description-button button,
+.__jobs-description-button a,
 .__jobs-description-button button:focus,
 .__jobs-description-button button:visited {
 	width: 166px;
