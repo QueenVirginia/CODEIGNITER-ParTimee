@@ -354,6 +354,28 @@ span {
 	margin-right: 10px;
 }
 
+.__jobs-description-button-group {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.__jobs-description-button-group input,
+.__jobs-description-button-group input:focus,
+.__jobs-description-button-group input:visited {
+	width: 111px;
+	padding: 12px;
+	font-size: 14px;
+	box-shadow: none;
+	color: #0D6EFD;
+	background-color: #FFFFFF;
+}
+
+.__jobs-description-button-group input:hover {
+	background-color: #e9e9e9;
+	color: #0D6EFD;
+}
+
 .__btn-apply {
 	margin-right: 20px;
 	box-shadow: none;

@@ -24,36 +24,40 @@ class JobsList extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    // public function detail($id_job)
-    // {
-    //     $data['jobs'] = $this->Jobs_model->getJobById($id_job);
-    //     $this->load->view('jobs_list/detail', $data);
-    // }
-
     public function detailJob($id_job)
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['jobs'] = $this->Jobs_model->getJobsRow($id_job);
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('jobs_list/detail', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function addApply($id_job)
-    {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['jobs'] = $this->Jobs_model->getJobsRow($id_job);
-
-        echo '$data';
-
-        if ($this->input->post('id_company')) {
-            $id_company = $this->input->post('id_company');
+        if ($this->input->post('addApply', true)) {
             $id_user = $this->input->post('id_user');
+            $id_job = $this->input->post('id_job');
 
-            $this->db->set('id_user', $id_user);
-            $this->db->set('id_company', $id_company);
-            $this->db->insert('apply');
+            $this->db->select('*');
+            $this->db->from('apply');
+            $this->db->where('id_user', $id_user);
+            $this->db->where('id_job', $id_job);
+            $query = $this->db->get()->row_array();
+
+            if ($query != NULL) {
+                $this->session->set_flashdata(
+                    'msg_apply',
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+                This Job Already Marked! Go To <u>Profile</u> to See Your Job.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+                );
+            } else {
+                $this->db->set('id_user', $id_user);
+                $this->db->set('id_job', $id_job);
+                $this->db->insert('apply');
+
+                $this->session->set_flashdata(
+                    'msg_apply',
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert"> 
+                Success! You Marked This Job.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+                );
+            }
         }
 
         $this->load->view('templates/header', $data);

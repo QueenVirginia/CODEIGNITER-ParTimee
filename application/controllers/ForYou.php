@@ -24,10 +24,8 @@ class ForYou extends CI_Controller
         $this->db->join('user', 'user.id_user= algo.id_user');
         $algos = $this->db->get()->result_array();
 
-
         // Select nama user yang menampilkan nama_job dan rating
-        foreach($algos as $alg)
-        {
+        foreach ($algos as $alg) {
             $matrix[$alg['nama']][$alg['nama_job']] = $alg['rating'];
         }
 

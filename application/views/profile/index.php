@@ -43,16 +43,18 @@
                 <h1>Application</h1>
                 <p>2 Jobs</p>
             </div>
-            <div class="__jobs-apply-list">
-                <div class="__form-jobs">
-                    <h2>Tokopedia</h2>
-                    <p>UI/UX Designer</p>
+            <?php foreach ($apply as $a) : ?>
+                <div class="__jobs-apply-list">
+                    <div class="__form-jobs">
+                        <h2><?= $a['nama_job']; ?></h2>
+                        <p><?= $a['nama_company']; ?></p>
+                    </div>
+                    <div class="__btn-response">
+                        <a type="button" href="<?= base_url(); ?>profile/delete_apply/<?= $a['id_apply']; ?>" class="__btn-nores btn btn-danger" type="submit">UUNMARKED</a>
+                        <button class="__btn-haveres btn btn-success" type="submit">HAVE RESPONSE</button>
+                    </div>
                 </div>
-                <div class="__btn-response">
-                    <button class="__btn-nores btn btn-danger" type="submit">NO RESPONSE</button>
-                    <button class="__btn-haveres btn btn-success" type="submit">HAVE RESPONSE</button>
-                </div>
-            </div>
+            <?php endforeach ?>
         </div>
     </div>
 </div>

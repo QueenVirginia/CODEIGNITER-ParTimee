@@ -5,10 +5,6 @@ class Jobs_model extends CI_Model
 
     public function GetAllJobs()
     {
-        // $this->db->order_By('id_job', 'DESC');
-        // $query = $this->db->get('Jobs');
-        // return $query->result_array();
-
         $this->db->select('*');
         $this->db->from('jobs');
         $this->db->join('company', 'company.id_company = jobs.id_company');
@@ -66,43 +62,4 @@ class Jobs_model extends CI_Model
         $this->db->or_like('tipe_kerja', $keyword);
         return $this->db->get('jobs')->count_all_results();
     }
-
-    // public function tambahDataJobs()
-    // {
-    //     $data = [
-    //         "nama_job" => $this->input->post('nama_job', true),
-    //         "perusahaan" => $this->input->post('perusahaan', true),
-    //         "lokasi" => $this->input->post('lokasi', true)
-    //     ];
-
-    //     $this->db->insert('jobs', $data);
-    // }
-
-    // public function hapusDataJobs($id_job)
-    // {
-    //     $this->db->where('id_job', $id_job);
-    //     $this->db->delete('jobs');
-    // }
-
-    // public function ubahDataJobs()
-    // {
-    //     $data = [
-    //         "nama_job" => $this->input->post('nama_job', true),
-    //         "perusahaan" => $this->input->post('perusahaan', true),
-    //         "lokasi" => $this->input->post('lokasi', true)
-    //     ];
-
-    //     // Ngambil dari id yang hidden
-    //     $this->db->where('id_job', $this->input->post('id'));
-    //     $this->db->update('jobs', $data);
-    // }
-
-    // public function cariDataJobs()
-    // {
-    //     $keyword = $this->input->post('keyword', TRUE);
-    //     $this->db->like('nama_job', $keyword);
-    //     $this->db->or_like('lokasi', $keyword);
-
-    //     return $this->db->get('jobs')->result_array();
-    // }
 }

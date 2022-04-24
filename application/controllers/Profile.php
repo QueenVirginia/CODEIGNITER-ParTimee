@@ -12,6 +12,17 @@ class Profile extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+        foreach ($data as $d) {
+            $this->db->select('*');
+            $this->db->from('apply');
+            $this->db->join('jobs', 'jobs.id_job= apply.id_job');
+            $this->db->join('company', 'company.id_company= jobs.id_company');
+            $this->db->where('id_user', $d['id_user']);
+            $query = $this->db->get()->result_array();
+        }
+
+        $data['apply'] = $query;
+
         $this->load->view('templates/header', $data);
         $this->load->view('profile/index', $data);
         $this->load->view('templates/footer');
