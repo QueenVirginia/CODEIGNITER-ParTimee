@@ -50,8 +50,8 @@
                         <p><?= $a['nama_company']; ?></p>
                     </div>
                     <div class="__btn-response">
-                        <a type="button" href="<?= base_url(); ?>profile/delete_apply/<?= $a['id_apply']; ?>" class="__btn-nores btn btn-danger" type="submit">UUNMARKED</a>
-                        <button class="__btn-haveres btn btn-success" type="submit">HAVE RESPONSE</button>
+                        <a type="button" href="<?= base_url(); ?>profile/delete_apply/<?= $a['id_apply']; ?>" class="__btn-nores btn btn-danger" type="submit">Unmarked</a>
+                        <button class="__btn-haveres btn btn-success" type="submit">Get In? Rating Your Experience</button>
                     </div>
                 </div>
             <?php endforeach ?>
