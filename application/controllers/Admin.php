@@ -18,7 +18,7 @@ class Admin extends CI_Controller
         $data['count_user'] = $this->Admin_model->countDataUser();
         $data['count_jobs'] = $this->Admin_model->countDataJobs();
         $data['count_company'] = $this->Admin_model->countDataCompany();
-        // $data['count_apply'] = $this->Admin_model->countDataApply();
+        $data['count_apply'] = $this->Admin_model->countDataApply();
 
         $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/index', $data);

@@ -966,25 +966,47 @@ span {
 
 .__btn-nores,
 .__btn-haveres {
-	padding: 17px;
+	padding: 8px;
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 500;
 }
 
-.__btn-nores,
+.__btn-nores {
+	background-color: #FFFFFF;
+	border: 1px solid transparent;
+	color: #9A9A9A;
+}
+
 .__btn-nores:hover,
 .__btn-nores:active {
-	background-color: #F36869;
-	border: #F36869;
+	background-color: #FFFFFF;
+	border: 1px solid transparent;
+	color: #858585;
 }
 
-.__btn-haveres,
-.__btn-haveres:hover,
-.__btn-haveres:active {
+.__btn-haveres {
 	background-color: #6ED098;
-	border: #6ED098;
+	border: 1px solid #6ED098;
 	margin-left: 12px;
 }
+
+.__btn-haveres:hover,
+.__btn-haveres:active {
+	background-color: #57B07D;
+	border: 1px solid #6ED098;
+	margin-left: 12px;
+}
+
+.__card-rating {
+	border: 1px solid transparent;
+	background-color: #caf3dc;
+}
+
+.__rating-content {
+	display: flex;
+}
+
+.__add-rating-btn {}
 
 .__form-jobs h2 {
 	font-size: 20px;

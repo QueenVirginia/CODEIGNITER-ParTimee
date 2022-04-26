@@ -18,15 +18,22 @@ class ForYou extends CI_Controller
             $data['company'] = $this->Company_model->searchCompany();
         }
 
-        $this->db->select('*');
-        $this->db->from('algo');
-        $this->db->join('jobs', 'jobs.id_job= algo.id_job');
-        $this->db->join('user', 'user.id_user= algo.id_user');
+        $this->db->select('user.nama, company.nama_company, company.rating as company_rating, company.kantor_pusat, user.nama, apply.rating as apply_rating');
+        $this->db->from('apply');
+        $this->db->join('company', 'company.id_company= apply.id_company');
+        $this->db->join('user', 'user.id_user= apply.id_user');
+        $this->db->where('apply.response', 1);
         $algos = $this->db->get()->result_array();
 
-        // Select nama user yang menampilkan nama_job dan rating
+        // $this->db->select('*');
+        // $this->db->from('algo');
+        // $this->db->join('jobs', 'jobs.id_job= algo.id_job');
+        // $this->db->join('user', 'user.id_user= algo.id_user');
+        // $algos = $this->db->get()->result_array();
+
+        // Select nama user yang menampilkan nama_company dan rating
         foreach ($algos as $alg) {
-            $matrix[$alg['nama']][$alg['nama_job']] = $alg['rating'];
+            $matrix[$alg['nama']][$alg['nama_company']] = $alg['apply_rating'];
         }
 
         // Ambil nama user aktif
@@ -34,6 +41,11 @@ class ForYou extends CI_Controller
         $this->db->from('user');
         $this->db->where('email', $this->session->userdata('email'));
         $nama_user = $this->db->get()->row_array();
+
+        // echo '<pre>';
+        // var_dump($matrix);
+        // echo '</pre>';
+        // die;
 
         // Ubah Array menjadi String
         $new_nama = implode(" ", $nama_user);
@@ -69,6 +81,12 @@ class ForYou extends CI_Controller
 
         // Similarity
         return 1 / (1 + sqrt($sum));
+
+        // $test = 1 / (1 + sqrt($sum));
+        // echo '<pre>';
+        // var_dump($test);
+        // echo '</pre>';
+        // die;
     }
 
     private function getRecommendations($matrix, $person)

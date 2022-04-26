@@ -41,7 +41,6 @@
         <div class="__profile-jobs">
             <div class="__jobs-apply">
                 <h1>Application</h1>
-                <p>2 Jobs</p>
             </div>
             <?php foreach ($apply as $a) : ?>
                 <div class="__jobs-apply-list">
@@ -50,10 +49,57 @@
                         <p><?= $a['nama_company']; ?></p>
                     </div>
                     <div class="__btn-response">
-                        <a type="button" href="<?= base_url(); ?>profile/delete_apply/<?= $a['id_apply']; ?>" class="__btn-nores btn btn-danger" type="submit">Unmarked</a>
-                        <button class="__btn-haveres btn btn-success" type="submit">Get In? Rating Your Experience</button>
+                        <a type="button" href="<?= base_url(); ?>profile/delete/<?= $a['id_apply']; ?>" class="__btn-nores btn btn-danger" type="submit">Unmarked</a>
+                        <button class="__btn-haveres btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample<?= $a['id_apply']; ?>" aria-expanded="false" aria-controls="collapseExample">Get In? Rating Your Experience</button>
                     </div>
                 </div>
+                <div class="collapse" id="collapseExample<?= $a['id_apply']; ?>">
+                    <div class="card card-body __card-rating" style="margin-bottom: 20px;">
+                        <form action="<?= base_url(); ?>profile/add_rating" method="POST">
+                            <input type="hidden" class="form-control" name="id_apply" value="<?= $a['id_apply']; ?>">
+                            <input type="hidden" class="form-control" name="id_company" value="<?= $a['id_company']; ?>">
+                            <label for="rating" class="form-label">Rating</label>
+                            <div class="__rating-content">
+                                <select class="form-select" id="rating" aria-label="Default select example" name="rating">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <button type="submit" name="add_rating" class="btn btn-primary __add-rating-btn">Add Rating</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Input Rating Modal -->
+                <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Rate Your Experience!</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="<?= base_url(); ?>profile/add_rating" method="POST">
+                                <input type="hidden" class="form-control" name="id_apply" value="<?= $a['id_apply']; ?>">
+                                <div class="modal-body">
+                                    <label for="rating" class="form-label">Rating</label>
+                                    <select class="form-select" id="rating" aria-label="Default select example" name="rating">
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" name="add_rating" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> -->
             <?php endforeach ?>
         </div>
     </div>

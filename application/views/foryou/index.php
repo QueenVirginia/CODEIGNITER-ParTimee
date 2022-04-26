@@ -2,26 +2,30 @@
     <h1>Recommended Company For You</h1>
 </div>
 
-<?php foreach ($rec as $nama_job=>$rating) : ?>
+<?php foreach ($rec as $nama_company => $apply_rating) : ?>
 
-<div class="__rec-company">
-    <div class="__jobs-company-card __rec-company-card">
-        <img src="asset/img/hero.png" class="card-img-top" alt="...">
-        <div class="__jobs-company-body card-body">
-            <a class="card-title"><p><?= $nama_job; ?></p><span><p><?= $rating; ?></p><img src="asset/icon/rating.svg" alt=""></span></a>
-            <div class="__job-content-detail">
-                <div class="__job-content-loc">
-                    <img src="asset/icon/location.svg" alt="" style="width: 20px; height: 20px;">
-                    <p>Jakarta</p>
-                </div>
-                <div class="__job-content-exp">
-                    <img src="asset/icon/experiences.svg" alt="" style="width: 20px; height: 20px;">
-                    <p>1 Lowongan</p>
+    <div class="__rec-company">
+        <div class="__jobs-company-card __rec-company-card">
+            <img src="asset/img/hero.png" class="card-img-top" alt="...">
+            <div class="__jobs-company-body card-body">
+                <a class="card-title">
+                    <p><?= $nama_company; ?></p><span>
+                        <p><?= $apply_rating; ?></p><img src="asset/icon/rating.svg" alt="">
+                    </span>
+                </a>
+                <div class="__job-content-detail">
+                    <div class="__job-content-loc">
+                        <img src="asset/icon/location.svg" alt="" style="width: 20px; height: 20px;">
+                        <p>Jakarta</p>
+                    </div>
+                    <div class="__job-content-exp">
+                        <img src="asset/icon/experiences.svg" alt="" style="width: 20px; height: 20px;">
+                        <p>1 Lowongan</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 <?php endforeach ?>
 

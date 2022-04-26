@@ -11,4 +11,10 @@ class Profile_model extends CI_Model
     {
         return $this->db->get_where('apply', ['id_user' => $id_user])->result_array();
     }
+
+    public function deleteDataApply($id_apply)
+    {
+        $this->db->where('id_apply', $id_apply);
+        $this->db->delete('apply');
+    }
 }

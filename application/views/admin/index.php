@@ -71,7 +71,7 @@
                         <div class="col mr-2">
                             <div class="font-weight-bold text-info text-uppercase mb-2">
                                 Total Jobs Apply</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $count_apply; ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-paper-plane fa-2x text-info"></i>
