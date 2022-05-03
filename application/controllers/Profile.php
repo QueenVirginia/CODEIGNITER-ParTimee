@@ -13,7 +13,7 @@ class Profile extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         foreach ($data as $d) {
-            $this->db->select('*');
+            $this->db->select('company.nama_company, company.id_company, apply.rating as apply_rating, apply.id_apply, jobs.nama_job');
             $this->db->from('apply');
             $this->db->join('jobs', 'jobs.id_job= apply.id_job');
             $this->db->join('company', 'company.id_company = jobs.id_company');
@@ -38,12 +38,12 @@ class Profile extends CI_Controller
         $query = $this->db->get()->row_array();
 
         if ($query != NULL) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible fade show" role="alert">You can not unmarked this job! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Pekerjaan yang telah diberi rating tidak dapat di umarked!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
             redirect('profile');
         } else {
             $this->Profile_model->deleteDataApply($id_apply);
 
-            $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">Success unmarked your job! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+            $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">Anda berhasil unmarked pekerjaan ini! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
             redirect('profile');
         }
     }
@@ -72,7 +72,7 @@ class Profile extends CI_Controller
             if ($query != NULL) {
                 $this->session->set_flashdata(
                     'msg',
-                    '<div class="alert alert-danger alert-dismissible fade show" role="alert"> Your Already Rate This Job!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert">Anda telah memberi rating pekerjaan ini!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
                 );
                 redirect('profile');
             } else {
@@ -82,7 +82,7 @@ class Profile extends CI_Controller
                 $this->db->where('id_apply', $id_apply);
                 $this->db->update('apply');
 
-                $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">Success rate your jobs! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+                $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">Anda berhasil memasukan rating!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
                 redirect('profile');
             }
         }
@@ -124,7 +124,7 @@ class Profile extends CI_Controller
             $this->db->where('email', $email);
             $this->db->update('user');
 
-            $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">Success edit your profile! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+            $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible fade show" role="alert">Anda berhasil mengubah profil!<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
             redirect('profile');
         }
     }

@@ -43,7 +43,7 @@ class JobsList extends CI_Controller
                 $this->session->set_flashdata(
                     'msg_apply',
                     '<div class="alert alert-danger alert-dismissible fade show" role="alert"> 
-                This Job Already Marked! Go To <u>Profile</u> to See Your Job.
+                    Anda telah marked pekerjaan ini! Cek Profile untuk unmarked pekerjaan ini.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
                 );
             } else {
@@ -54,7 +54,7 @@ class JobsList extends CI_Controller
                 $this->session->set_flashdata(
                     'msg_apply',
                     '<div class="alert alert-success alert-dismissible fade show" role="alert"> 
-                Success! You Marked This Job.
+                Anda berhasil marked pekerjaan ini! Silahkan ke Profile untuk melihat lamaran Anda.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
                 );
             }

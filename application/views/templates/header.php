@@ -21,15 +21,15 @@
             <a class="__navbar-logo navbar-brand" href="<?= base_url() ?>">PartTimee</a>
             <div class="collapse navbar-collapse float-end" id="navbarNavAltMarkup" style="justify-content: center;">
                 <div class="navbar-nav">
-                    <a class="nav-link" aria-current="page" href="<?= base_url() ?>jobslist">Jobs</a>
-                    <a class="nav-link" href="<?= base_url() ?>foryou">Company</a>
-                    <a class="nav-link" href="<?= base_url() ?>aboutus">About Us</a>
+                    <a class="nav-link" aria-current="page" href="<?= base_url() ?>jobslist">Lowongan</a>
+                    <a class="nav-link" href="<?= base_url() ?>foryou">Perusahaan</a>
+                    <a class="nav-link" href="<?= base_url() ?>aboutus">Tentang Kami</a>
                 </div>
             </div>
             <div class="dropdown">
                 <img src="<?= base_url('asset/profile_img/') . $user['foto']; ?>" class="dropdown-toggle" type="button" id="profile-pic" data-bs-toggle="dropdown" aria-expanded="false" style="width: 40px; height: 40px; border-radius: 50%;">
                 <ul class="dropdown-menu" aria-labelledby="profile-pic" style="margin-left: -100px;">
-                    <li><a class="dropdown-item" href="<?= base_url() ?>profile">Profile</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url() ?>profile">Profil</a></li>
                     <li><a class="dropdown-item" href="<?= base_url() ?>auth/logout">Logout</a></li>
                 </ul>
             </div>

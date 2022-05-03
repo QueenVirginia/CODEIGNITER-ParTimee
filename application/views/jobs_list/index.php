@@ -3,9 +3,10 @@
     <form action="" method="POST">
       <div class="__input-group input-group">
         <span class="__input-group-text input-group-text"><img src="<?= base_url(); ?>asset/icon/search.svg" class="input-group-text" alt=""></span>
-        <input type="text" class="__input-form form-control" placeholder="Find Part Time" name="cari_kerja">
-        <button type="submit" class="__btn-find-job btn">Find Job</button>
+        <input type="text" class="__input-form form-control" placeholder="Temukan Lowogan Part Time" name="cari_kerja">
+        <button type="submit" class="__btn-find-job btn">Temukkan Pekerjaan</button>
       </div>
+      <p class="mt-2 text-muted" style="font-size: 12px;">*Anda dapat mencari lowongan berdasarkan nama pekerjaan, nama perusahaan, lokasi, rating, tipe kerja, atau batasan.</p>
     </form>
   </div>
 </div>
@@ -18,8 +19,8 @@
 <?php if (empty($jobs)) : ?>
   <div class="__empty-state">
     <h1>Sorry</h1>
-    <p class="text-muted">We can't find the jobs your looking for please go to the</p>
-    <a href="<?= base_url(); ?>jobslist" class="__btn-back-to-jobs btn btn-primary">Jobs</a>
+    <p class="text-muted">Kami tidak bisa menemukan pekerjaan yang Anda cari.</p>
+    <a href="<?= base_url(); ?>jobslist" class="__btn-back-to-jobs btn btn-primary">Kembali ke Lowongan</a>
   </div>
 <?php endif; ?>
 

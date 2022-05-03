@@ -9,7 +9,7 @@
             <div class="__boxes">
                 <div class="mb-0 __input-group __login-form-input input-group">
                     <span class="__input-group-text input-group-text"><img src="<?php echo base_url(); ?>asset/icon/user.svg" class="input-group-text" alt=""></span>
-                    <input type="text" class="__input-form form-control" placeholder="Full Name" aria-label="nama" name="nama" id="nama" value="<?= set_value('nama'); ?>">
+                    <input type="text" class="__input-form form-control" placeholder="Nama Lengkap" aria-label="nama" name="nama" id="nama" value="<?= set_value('nama'); ?>">
                 </div>
                 <small><?= form_error('nama'); ?></small>
             </div>
@@ -17,7 +17,7 @@
             <div class="__boxes">
                 <div class="mb-0 __input-group __login-form-input input-group">
                     <span class="__input-group-text input-group-text"><img src="<?php echo base_url(); ?>asset/icon/email.svg" class="input-group-text" alt=""></span>
-                    <input type="text" class="__input-form form-control" placeholder="E-mail Address" aria-label="email" name="email" id="email" value="<?= set_value('email'); ?>">
+                    <input type="text" class="__input-form form-control" placeholder="Alamat Email" aria-label="email" name="email" id="email" value="<?= set_value('email'); ?>">
                 </div>
                 <small><?= form_error('email'); ?></small>
             </div>
@@ -32,18 +32,18 @@
 
             <div class="__input-group input-group">
                 <span class="__input-group-text input-group-text"></span>
-                <input type="password" class="__input-form form-control" placeholder="Repeat Password" aria-label="password2" name="password2" id="password2" style="padding-top: 16px; padding-bottom: 14px">
+                <input type="password" class="__input-form form-control" placeholder="Ulangi Password" aria-label="password2" name="password2" id="password2" style="padding-top: 16px; padding-bottom: 14px">
             </div>
 
-            <button type="submit" class="__btn-regis btn btn-primary w-100">Register Account</button>
+            <button type="submit" class="__btn-regis btn btn-primary w-100">Register Akun</button>
         </div>
     </form>
 
-    <div class="mt-4 text-center">
+    <!-- <div class="mt-4 text-center">
         <a href="">Forgot Password?</a>
-    </div>
+    </div> -->
 
     <div class="mt-2 text-center">
-        <a href="<?php echo base_url(); ?>auth">Already have an Account? Login!</a>
+        <a href="<?php echo base_url(); ?>auth">Sudah memiliki akun? Login disini!</a>
     </div>
 </div>

@@ -11,7 +11,7 @@
             <div class="__boxes">
                 <div class="mb-0 __input-group __login-form-input input-group">
                     <span class="__input-group-text input-group-text"><img src="asset/icon/email.svg" class="input-group-text" alt=""></span>
-                    <input type="text" class="__input-form form-control" placeholder="Enter your email..." aria-label="email" name="email" id="email" value="<?= set_value('email'); ?>">
+                    <input type="text" class="__input-form form-control" placeholder="Masukkan Alamat Email..." aria-label="email" name="email" id="email" value="<?= set_value('email'); ?>">
                 </div>
                 <small><?= form_error('email'); ?></small>
             </div>
@@ -27,11 +27,11 @@
         </div>
     </form>
 
-    <div class="mt-4 text-center">
+    <!-- <div class="mt-4 text-center">
         <a href="">Forgot Password?</a>
-    </div>
+    </div> -->
 
     <div class="mt-2 text-center">
-        <a href="<?= base_url() ?>auth/registration">Create an Account!</a>
+        <a href="<?= base_url() ?>auth/registration">Buat akun disini!!</a>
     </div>
 </div>

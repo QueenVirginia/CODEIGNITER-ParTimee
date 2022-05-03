@@ -1,19 +1,20 @@
 <div class="__subheader">
-    <h1>Recommended Company For You</h1>
+    <h1>Rekomendasi Untuk Anda</h1>
 </div>
 
 <?php foreach ($rec as $nama_company => $apply_rating) : ?>
-
     <div class="__rec-company">
-        <div class="__jobs-company-card __rec-company-card">
+        <div class="__jobs-company-card __rec-company-container" style="padding-bottom: 16px;">
             <img src="asset/img/hero.png" class="card-img-top" alt="...">
             <div class="__jobs-company-body card-body">
-                <a class="card-title">
-                    <p><?= $nama_company; ?></p><span>
-                        <p><?= $apply_rating; ?></p><img src="asset/icon/rating.svg" alt="">
+                <a class="card-title" style="text-decoration: none; color: #3A3A3A">
+                    <p><?= $nama_company; ?></p>
+                    <span>
+                        <img src="asset/icon/rating.svg" alt="">
+                        <p><?= number_format((float)$apply_rating, 1, '.', ''); ?></p>
                     </span>
                 </a>
-                <div class="__job-content-detail">
+                <!-- <div class="__job-content-detail">
                     <div class="__job-content-loc">
                         <img src="asset/icon/location.svg" alt="" style="width: 20px; height: 20px;">
                         <p>Jakarta</p>
@@ -22,7 +23,7 @@
                         <img src="asset/icon/experiences.svg" alt="" style="width: 20px; height: 20px;">
                         <p>1 Lowongan</p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -30,25 +31,29 @@
 <?php endforeach ?>
 
 <div class="__subheader">
-    <h1>Company</h1>
+    <h1>Perusahaan</h1>
 </div>
 
 <div class="__rec-company">
     <?php foreach ($company as $c) : ?>
-        <div class="__jobs-company-card __rec-company-card card">
-            <img src="<?= base_url('asset/company_img/') . $c['logo']; ?>" class="card-img-top" alt="...">
-            <div class="__jobs-company-body card-body">
-                <a href="<?= base_url(); ?>foryou/detail/<?= $c['id_company']; ?>" style="text-decoration: none; color: #424242;" class="stretched-link"><?= $c['nama_company']; ?></a>
-                <span><?= $c['rating']; ?> <img src="asset/icon/rating.svg" alt=""></span>
-                <div class="mt-2 __job-content-detail">
-                    <div class="__job-content-loc">
-                        <img src="asset/icon/location.svg" alt="" style="width: 20px; height: 20px;">
-                        <p><?= $c['kantor_pusat']; ?></p>
+        <div class="__jobs-company-card __rec-company-container card">
+            <div class="__container-card __rec-company-card">
+                <img src="<?= base_url('asset/company_img/') . $c['logo']; ?>" class="card-img-top" alt="...">
+                <div class="__jobs-company-body card-body">
+                    <a href="<?= base_url(); ?>foryou/detail/<?= $c['id_company']; ?>" style="text-decoration: none; color: #424242;" class="stretched-link"><?= $c['nama_company']; ?></a>
+                    <span><?= $c['rating']; ?> <img src="asset/icon/rating.svg" alt=""></span>
+                    <div class="mt-2 __job-content-detail">
+                        <div class="__job-content-loc">
+                            <img src="asset/icon/location.svg" alt="" style="width: 20px; height: 20px;">
+                            <p><?= $c['kantor_pusat']; ?></p>
+                        </div>
                     </div>
-                    <div class="__job-content-exp">
-                        <img src="asset/icon/experiences.svg" alt="" style="width: 20px; height: 20px;">
-                        <p><?= $c['count']; ?> Lowongan</p>
-                    </div>
+                </div>
+            </div>
+            <div class="__jobs-company-apply card-body">
+                <div class="__job-content-exp">
+                    <img src="asset/icon/experiences.svg" alt="" style="width: 20px; height: 20px;">
+                    <p><?= $c['count']; ?> Pekerjaan Tersedia</p>
                 </div>
             </div>
         </div>

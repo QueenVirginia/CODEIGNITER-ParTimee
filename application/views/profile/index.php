@@ -1,6 +1,6 @@
 <div class="__profile">
     <div class="__profile-header">
-        <h1>Profile</h1>
+        <h1>Profil</h1>
     </div>
     <!-- 
     <div class="__profile-detail">
@@ -17,36 +17,33 @@
         </div>
     </div> -->
 
-    <!-- <?= form_error('nama', '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>', '</div>'); ?>
-
-    <?= form_error('email', '<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>', '</div>'); ?> -->
-
     <?= $this->session->flashdata('msg') ?>
 
     <div class="__profile-desc-jobs">
         <div class="__profile-desc">
-            <h1>Profile Detail</h1>
+            <h1>Profil Anda</h1>
             <div class="__profile-photo">
                 <img src="<?= base_url('asset/profile_img/') . $user['foto']; ?>" alt="">
                 <div class="__profile-name">
                     <h1><?= $user['nama']; ?></h1>
                     <p><?= $user['email']; ?></p>
-                    <h6 class="mt-2 text-muted fw-light">Created since <?= date('d F Y', $user['tanggal_buat']); ?></h6>
+                    <h6 class="mt-2 text-muted fw-light">Dibuat sejak <?= date('d F Y', $user['tanggal_buat']); ?></h6>
                     <div class="__btn-edit-logout">
-                        <a href="<?= base_url('profile/edit'); ?>" class="__btn-edit btn btn-outline-primary">EDIT</a>
+                        <a href="<?= base_url('profile/edit'); ?>" class="__btn-edit btn btn-outline-primary">Ubah Profil</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="__profile-jobs">
             <div class="__jobs-apply">
-                <h1>Application</h1>
+                <h1>Lowongan Anda</h1>
             </div>
             <?php foreach ($apply as $a) : ?>
                 <div class="__jobs-apply-list">
                     <div class="__form-jobs">
                         <h2><?= $a['nama_job']; ?></h2>
                         <p><?= $a['nama_company']; ?></p>
+                        <p style="color: #57B07D;">Your Rate: <?= $a['apply_rating']; ?></p>
                     </div>
                     <div class="__btn-response">
                         <a type="button" href="<?= base_url(); ?>profile/delete/<?= $a['id_apply']; ?>" class="__btn-nores btn btn-danger" type="submit">Unmarked</a>
@@ -58,7 +55,7 @@
                         <form action="<?= base_url(); ?>profile/add_rating" method="POST">
                             <input type="hidden" class="form-control" name="id_apply" value="<?= $a['id_apply']; ?>">
                             <input type="hidden" class="form-control" name="id_company" value="<?= $a['id_company']; ?>">
-                            <label for="rating" class="form-label">Rating</label>
+                            <label for="rating" class="form-label __rating-label">Rating</label>
                             <div class="__rating-content">
                                 <select class="form-select" id="rating" aria-label="Default select example" name="rating">
                                     <option value="1" selected>1</option>
@@ -67,7 +64,7 @@
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select>
-                                <button type="submit" name="add_rating" class="btn btn-primary __add-rating-btn">Add Rating</button>
+                                <button type="submit" name="add_rating" class="btn btn-primary __add-rating-btn">Simpan Rating</button>
                             </div>
                         </form>
                     </div>

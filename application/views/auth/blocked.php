@@ -39,7 +39,7 @@
                         <div class="error mx-auto" data-text="403">403</div>
                         <p class="lead text-gray-800 mb-5">Access Forbidden</p>
                         <p class="text-gray-500 mb-0">You have no access here...</p>
-                        <a href="<?= base_url('jobslist') ?>">&larr; Back to Jobs List</a>
+                        <a href="<?= base_url('jobslist') ?>">&larr; Kembali ke Daftar Lowongan</a>
                     </div>
 
                 </div>
@@ -69,9 +69,9 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Pilih "Logout" below dibawah jika kamu ingin keluar dari website.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
                     <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>

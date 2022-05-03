@@ -81,12 +81,6 @@ class ForYou extends CI_Controller
 
         // Similarity
         return 1 / (1 + sqrt($sum));
-
-        // $test = 1 / (1 + sqrt($sum));
-        // echo '<pre>';
-        // var_dump($test);
-        // echo '</pre>';
-        // die;
     }
 
     private function getRecommendations($matrix, $person)

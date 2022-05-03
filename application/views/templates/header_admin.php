@@ -71,28 +71,28 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url(); ?>admin/user_list">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>Manage User</span></a>
+                    <span>Kelola User</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url(); ?>admin/job_list">
                     <i class="fas fa-fw fa-briefcase"></i>
-                    <span>Manage Jobs</span></a>
+                    <span>Kelola Lowongan</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url(); ?>admin/company_list">
                     <i class="fas fa-fw fa-building"></i>
-                    <span>Manage Company</span></a>
+                    <span>Kelola Perusahaan</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url(); ?>admin/apply_list">
                     <i class="fas fa-fw fa-paper-plane"></i>
-                    <span>Manage Jobs Apply</span></a>
+                    <span>Kelola Lamaran</span></a>
             </li>
 
             <!-- Divider -->
@@ -155,7 +155,7 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="<?= base_url(); ?>admin/profile">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Profil
                                 </a>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
