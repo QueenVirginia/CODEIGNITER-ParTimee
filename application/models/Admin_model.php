@@ -184,8 +184,13 @@ class Admin_model extends CI_Model
     // =============================== DATA APPLY ===============================
     public function getAllDataApply()
     {
-        $this->db->order_By('id_apply', 'ASC');
-        $query = $this->db->get('Apply');
+        $this->db->select('apply.id_apply, apply.rating as rating_apply, company.nama_company, user.nama, jobs.nama_job, user.id_user');
+        $this->db->from('apply');
+        $this->db->join('company', 'company.id_company = apply.id_company');
+        $this->db->join('jobs', 'jobs.id_job = apply.id_job');
+        $this->db->join('user', 'user.id_user = apply.id_user');
+        $this->db->group_by('user.id_user, company.id_company, jobs.id_job');
+        $query = $this->db->get();
         return $query->result_array();
     }
 
@@ -197,5 +202,18 @@ class Admin_model extends CI_Model
     public function countDataApply()
     {
         return $this->db->count_all_results('apply');
+    }
+
+    public function deleteDataApply($id_apply)
+    {
+        $this->db->where('id_apply', $id_apply);
+        $this->db->delete('applt');
+    }
+
+    public function searchApply()
+    {
+        $keyword = $this->input->post('cari_apply', TRUE);
+        $this->db->like('nama', $keyword);
+        return $this->db->get('user')->result_array();
     }
 }

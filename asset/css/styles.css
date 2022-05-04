@@ -602,6 +602,14 @@ span {
 	border: 0;
 }
 
+.__span-rating {
+	display: flex;
+}
+
+.__jobs-company-rec span {
+	margin-left: 0px !important;
+}
+
 
 /* LOGIN & REGISTER HEADER */
 .active {

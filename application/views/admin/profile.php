@@ -1,9 +1,9 @@
-<h1 class="h3 mb-4 pl-4 text-gray-800">Profile</h1>
+<h1 class="h3 mb-4 pl-4 text-gray-800">Profil</h1>
 
 <div class="mb-2 ml-4" style="max-width: 540px;">
     <?php if ($this->session->flashdata()) : ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Profile <?= $this->session->flashdata('flash'); ?> <strong>Succesfully</strong>.
+            Profil <strong>berhasil</strong> <?= $this->session->flashdata('flash'); ?>.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -20,8 +20,8 @@
             <div class="card-body">
                 <h5 class="card-title text-dark mb-0" style="font-weight: bold;"><?= $user['nama']; ?></h5>
                 <p class="card-text mb-2"><?= $user['email']; ?></p>
-                <p class="card-text"><small class="text-muted">Created since <?= date('d F Y', $user['tanggal_buat']); ?></small></p>
-                <a href="<?= base_url('admin/edit_profile'); ?>" class="__btn-edit btn btn-primary">EDIT</a>
+                <p class="card-text"><small class="text-muted">Dibuat sejak <?= date('d F Y', $user['tanggal_buat']); ?></small></p>
+                <a href="<?= base_url('admin/edit_profile'); ?>" class="__btn-edit btn btn-primary">Ubah Profil</a>
             </div>
         </div>
     </div>

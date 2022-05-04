@@ -1,5 +1,5 @@
 <!-- Page Heading -->
-<h1 class="h3 mb-4 pl-4 text-gray-800">Add New Job</h1>
+<h1 class="h3 mb-4 pl-4 text-gray-800">Tambah Lowongan Baru</h1>
 
 <div class="row mt-3 pl-4">
     <div class="col-md-8">
@@ -7,13 +7,13 @@
             <div class="card-body">
                 <form action="" method="POST">
                     <div class="form-group mt-3">
-                        <label for="nama_job">Job Name</label>
+                        <label for="nama_job">Nama Pekerjaan</label>
                         <input type="text" name="nama_job" class="form-control" id="nama_job" value="<?= set_value('nama_job'); ?>">
                         <div class=" form-text text-danger"><?= form_error('nama_job'); ?>
                         </div>
                     </div>
                     <div class="form-group mt-3">
-                        <label for="lokasi">Location</label>
+                        <label for="lokasi">Lokasi</label>
                         <input type="text" name="lokasi" class="form-control" id="lokasi" value="<?= set_value('lokasi'); ?>">
                         <div class=" form-text text-danger"><?= form_error('lokasi'); ?>
                         </div>
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="form-group mt-3">
-                        <label for="nama_company" class="form-label">Company Name</label>
+                        <label for="nama_company" class="form-label">Nama Perusahaan</label>
                         <select id="nama_company" class="custom-select" name="nama_company">
                             <?php foreach ($company as $nc) : ?>
                                 <option value="<?= $nc['nama_company']; ?>" selected><?= $nc['nama_company']; ?></option>
@@ -33,7 +33,7 @@
                         </select>
                     </div>
                     <div class="form-group mt-3">
-                        <label for="tipe_kerja" class="form-label">Job Type</label>
+                        <label for="tipe_kerja" class="form-label">Tipe Pekerjaan</label>
                         <select id="tipe_kerja" class="custom-select" name="tipe_kerja">
                             <option value="Remote" selected>Remote</option>
                             <option value="Hybrid">Hybrid</option>
@@ -41,29 +41,21 @@
                         </select>
                     </div>
                     <div class="form-group mt-3">
-                        <label for="deskripsi_job">Description</label>
+                        <label for="deskripsi_job">Deskripsi</label>
                         <textarea name="deskripsi_job" class="form-control" id="deskripsi_job" rows="5" value="<?= set_value('deskripsi_job'); ?>"></textarea>
                         <div class=" form-text text-danger"><?= form_error('deskripsi_job'); ?></div>
                     </div>
                     <div class="form-group mt-3">
-                        <label for="benefit_job">Benefit</label>
+                        <label for="benefit_job">Lokasi</label>
                         <textarea name="benefit_job" class="form-control" id="benefit_job" rows="5" value="<?= set_value('benefit_job'); ?>"></textarea>
                         <div class="form-text text-danger"><?= form_error('benefit_job'); ?></div>
                     </div>
                     <div class="form-group mt-3">
-                        <label for="link_apply">Apply Link</label>
+                        <label for="link_apply">Link Lamaran</label>
                         <input type="text" name="link_apply" class="form-control" id="link_apply" value="<?= set_value('link_job'); ?>">
                         <div class="form-text text-danger"><?= form_error('link_apply'); ?></div>
                     </div>
-                    <!-- <div class="form-group mt-3">
-                        <label for="lokasi" class="form-label">Lokasi</label>
-                        <select id="lokasi" class="form-select" name="lokasi">
-                            <option value="Jakarta">Jakarta</option>
-                            <option value="Bandung">Bandung</option>
-                            <option value="Bekasi">Bekasi</option>
-                        </select>
-                    </div> -->
-                    <button type="submit" name="add_job" class="btn btn-primary float-end">Save Job</button>
+                    <button type="submit" name="add_job" class="btn btn-primary float-end">Simpan Lowongan</button>
                 </form>
             </div>
         </div>

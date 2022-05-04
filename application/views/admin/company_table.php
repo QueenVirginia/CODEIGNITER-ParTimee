@@ -10,13 +10,13 @@
     <div class="d-flex justify-content-end">
         <!-- Add Jobs -->
         <div class="col-md-6 mb-4 mr-auto">
-            <a href="<?= base_url(); ?>admin/add_company/" class="btn btn-primary btn-lg"><i class="fas fa-plus fa-sm"></i> Add New Company</a>
+            <a href="<?= base_url(); ?>admin/add_company/" class="btn btn-primary btn-lg"><i class="fas fa-plus fa-sm"></i>&nbsp; Tambah Perusahaan Baru</a>
         </div>
 
         <!-- Topbar Search -->
         <form method="POST" class="d-none d-sm-inline-block form-inline mb-md-4 mx-auto col-6 navbar-search">
             <div class="input-group">
-                <input type="text" class="form-control bg-white border-0 small" placeholder="Search By Company ID, Company Name, Base Office, Rating, Industry..." name="cari_company">
+                <input type="text" class="form-control bg-white border-0 small" placeholder="Cari berdasarkan ID Perusahaan, Nama Perusahaan, Kantor Pusat, Rating atau Industri..." name="cari_company">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search fa-sm"></i>
@@ -29,7 +29,7 @@
     <!-- Pop Up Message -->
     <?php if ($this->session->flashdata()) : ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Jobs <?= $this->session->flashdata('flash'); ?> <strong>Succesfully</strong>.
+            Perusahaan baru <strong>berhasil</strong> <?= $this->session->flashdata('flash'); ?>.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -43,21 +43,21 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Company ID</th>
+                            <th>ID Perusahaan</th>
                             <th>Logo</th>
-                            <th>Company Name</th>
-                            <th>Base Office</th>
+                            <th>Nama Perusahaan</th>
+                            <th>Kantor Pusat</th>
                             <th>Rating</th>
-                            <th>Industry</th>
-                            <th>Action</th>
+                            <th>Industri</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (empty($company)) : ?>
                             <div class="__empty-state mb-4 text-center">
                                 <h1>Sorry</h1>
-                                <p class="text-muted">We can't find the company your looking for,</p>
-                                <a href="<?= base_url(); ?>admin/company_list" class="__btn-back-to-jobs btn btn-primary">Go Back</a>
+                                <p class="text-muted">Kami tidak dapat menemukan perusahaan yang Anda cari.</p>
+                                <a href="<?= base_url(); ?>admin/company_list" class="__btn-back-to-jobs btn btn-primary">Kembali</a>
                             </div>
                         <?php endif; ?>
 
@@ -70,9 +70,9 @@
                                 <td><?= $c['rating']; ?></td>
                                 <td><?= $c['industri']; ?></td>
                                 <td>
-                                    <a href="<?= base_url(); ?>admin/detail_company/<?= $c['id_company']; ?>" class="btn btn-primary">Detail</a>
-                                    <a href="<?= base_url(); ?>admin/edit_company/<?= $c['id_company']; ?>" class="btn btn-success">Edit</a>
-                                    <a href="<?= base_url(); ?>admin/delete_company/<?= $c['id_company']; ?>" class="btn btn-danger">Delete</a>
+                                    <a href="<?= base_url(); ?>admin/detail_company/<?= $c['id_company']; ?>" class="btn btn-primary">Lihat</a>
+                                    <a href="<?= base_url(); ?>admin/edit_company/<?= $c['id_company']; ?>" class="btn btn-success">Ubah</a>
+                                    <a href="<?= base_url(); ?>admin/delete_company/<?= $c['id_company']; ?>" class="btn btn-danger">Hapus</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

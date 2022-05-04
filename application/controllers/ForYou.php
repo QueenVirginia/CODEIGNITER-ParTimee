@@ -94,6 +94,7 @@ class ForYou extends CI_Controller
                 $sim = $this->similarity_distance($matrix, $person, $otherPerson);
                 // var_dump($sim);
 
+                // Weighted Sum
                 foreach ($matrix[$otherPerson] as $key => $value) {
                     if (!array_key_exists($key, $matrix[$person])) {
                         if (!array_key_exists($key, $total)) {
@@ -116,9 +117,14 @@ class ForYou extends CI_Controller
             $ranks[$key] = $value / $simsum[$key];
         }
 
+        // Sorting DESC
         array_multisort($ranks, SORT_DESC);
 
-        return $ranks;
+        // View 3 Highest Ranks
+        $limit = 3;
+        $ranks_limit = array_slice($ranks, 0, $limit);
+
+        return $ranks_limit;
     }
 
     public function detail($id_company)

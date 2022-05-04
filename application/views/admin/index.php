@@ -16,7 +16,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="font-weight-bold text-primary text-uppercase mb-2">
-                                Total Users</div>
+                                Total User</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $count_user; ?></div>
                         </div>
                         <div class="col-auto">
@@ -34,7 +34,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="font-weight-bold text-success text-uppercase mb-2">
-                                Total Jobs</div>
+                                Total Lowongan</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $count_jobs; ?></div>
                         </div>
                         <div class="col-auto">
@@ -52,7 +52,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="font-weight-bold text-warning text-uppercase mb-2">
-                                Total Company</div>
+                                Total Perusahaan</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $count_company; ?></div>
                         </div>
                         <div class="col-auto">
@@ -70,7 +70,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="font-weight-bold text-info text-uppercase mb-2">
-                                Total Jobs Apply</div>
+                                Total Lamaran</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $count_apply; ?></div>
                         </div>
                         <div class="col-auto">

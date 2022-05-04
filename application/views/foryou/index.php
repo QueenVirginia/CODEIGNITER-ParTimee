@@ -2,16 +2,16 @@
     <h1>Rekomendasi Untuk Anda</h1>
 </div>
 
-<?php foreach ($rec as $nama_company => $apply_rating) : ?>
-    <div class="__rec-company">
+<div class="__rec-company">
+    <?php foreach ($rec as $nama_company => $apply_rating) : ?>
         <div class="__jobs-company-card __rec-company-container" style="padding-bottom: 16px;">
             <img src="asset/img/hero.png" class="card-img-top" alt="...">
-            <div class="__jobs-company-body card-body">
+            <div class="__jobs-company-body __jobs-company-rec card-body">
                 <a class="card-title" style="text-decoration: none; color: #3A3A3A">
                     <p><?= $nama_company; ?></p>
-                    <span>
-                        <img src="asset/icon/rating.svg" alt="">
-                        <p><?= number_format((float)$apply_rating, 1, '.', ''); ?></p>
+                    <span class="__span-rating">
+                        <img src="asset/icon/rating.svg" alt="" style="margin-top: 0.5px;">
+                        <p style="margin-left: 4px;"><?= number_format((float)$apply_rating, 1, '.', ''); ?></p>
                     </span>
                 </a>
                 <!-- <div class="__job-content-detail">
@@ -26,9 +26,9 @@
                 </div> -->
             </div>
         </div>
-    </div>
+    <?php endforeach ?>
+</div>
 
-<?php endforeach ?>
 
 <div class="__subheader">
     <h1>Perusahaan</h1>

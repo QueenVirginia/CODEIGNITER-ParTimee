@@ -19,6 +19,7 @@ class JobsList extends CI_Controller
         }
 
         $data['count'] = $this->Jobs_model->countData();
+
         $this->load->view('templates/header', $data);
         $this->load->view('jobs_list/index', $data);
         $this->load->view('templates/footer');

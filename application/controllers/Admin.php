@@ -71,7 +71,7 @@ class Admin extends CI_Controller
             $this->db->where('email', $email);
             $this->db->update('user');
 
-            $this->session->set_flashdata('flash', 'Edited');
+            $this->session->set_flashdata('flash', 'diubah');
             redirect('admin/profile');
         }
     }
@@ -94,20 +94,20 @@ class Admin extends CI_Controller
     public function delete_user($id_user)
     {
         $this->Admin_model->deleteDataUser($id_user);
-        $this->session->set_flashdata('flash', 'Deleted');
+        $this->session->set_flashdata('flash', 'dihapus');
 
         redirect('admin/user_list');
     }
 
-    public function detail_user($id_user)
-    {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['user_data'] = $this->Admin_model->getUserById($id_user);
+    // public function detail_user($id_user)
+    // {
+    //     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    //     $data['user_data'] = $this->Admin_model->getUserById($id_user);
 
-        $this->load->view('templates/header_admin', $data);
-        $this->load->view('admin/detail_user', $data);
-        $this->load->view('templates/footer_admin');
-    }
+    //     $this->load->view('templates/header_admin', $data);
+    //     $this->load->view('admin/detail_user', $data);
+    //     $this->load->view('templates/footer_admin');
+    // }
 
     // =============================== JOB ===============================
     public function job_list()
@@ -170,7 +170,7 @@ class Admin extends CI_Controller
             $this->db->insert('jobs');
 
             // $this->Admin_model->addDataJobs($query);
-            $this->session->set_flashdata('flash', 'Added');
+            $this->session->set_flashdata('flash', 'ditambahkan');
             redirect('admin/job_list');
         }
     }
@@ -178,7 +178,7 @@ class Admin extends CI_Controller
     public function delete_job($id_job)
     {
         $this->Admin_model->deleteDataJobs($id_job);
-        $this->session->set_flashdata('flash', 'Deleted');
+        $this->session->set_flashdata('flash', 'dihapus');
         redirect('admin/job_list');
     }
 
@@ -212,7 +212,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer_admin');
         } else {
             $this->Admin_model->editDataJobs();
-            $this->session->set_flashdata('flash', 'Changed');
+            $this->session->set_flashdata('flash', 'diubah');
             redirect('admin/job_list');
         }
     }
@@ -284,7 +284,7 @@ class Admin extends CI_Controller
             $this->db->set('deskripsi', $deskripsi);
             $this->db->insert('company');
 
-            $this->session->set_flashdata('flash', 'Added');
+            $this->session->set_flashdata('flash', 'ditambahkan');
             redirect('admin/company_list');
         }
     }
@@ -292,7 +292,7 @@ class Admin extends CI_Controller
     public function delete_company($id_company)
     {
         $this->Admin_model->deleteDataCompany($id_company);
-        $this->session->set_flashdata('flash', 'Deleted');
+        $this->session->set_flashdata('flash', 'dihapus');
         redirect('admin/company_List');
     }
 
@@ -325,7 +325,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer_admin');
         } else {
             $this->Admin_model->editDataCompany();
-            $this->session->set_flashdata('flash', 'Changed');
+            $this->session->set_flashdata('flash', 'diubah');
             redirect('admin/company_list');
         }
     }
@@ -336,18 +336,123 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['apply'] = $this->Admin_model->getAllDataApply();
 
+        if ($this->input->post('cari_apply')) {
+            $data['apply'] = $this->Admin_model->searchApply();
+        }
+
         $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/apply_table', $data);
         $this->load->view('templates/footer_admin');
     }
 
-    public function detail_apply($id_apply)
+    public function delete_apply($id_apply)
+    {
+        $this->Admin_model->deleteDataApply($id_apply);
+        $this->session->set_flashdata('flash', 'dihapus');
+        redirect('admin/apply_list');
+    }
+
+    public function detail_apply($id_user)
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['apply'] = $this->Admin_model->getApplyById($id_apply);
+        $data['user_data'] = $this->Admin_model->getUserById($id_user);
+
+        $this->db->select('user.nama, company.nama_company, company.rating as company_rating, company.kantor_pusat, user.nama, apply.rating as apply_rating');
+        $this->db->from('apply');
+        $this->db->join('company', 'company.id_company= apply.id_company');
+        $this->db->join('user', 'user.id_user= apply.id_user');
+        $this->db->where('apply.response', 1);
+        $algos = $this->db->get()->result_array();
+
+        // Select nama user yang menampilkan nama_company dan rating
+        foreach ($algos as $alg) {
+            $matrix[$alg['nama']][$alg['nama_company']] = $alg['apply_rating'];
+        }
+
+        // Ambil nama user sesuai id
+        $this->db->select('nama');
+        $this->db->from('user');
+        $this->db->where('id_user', $id_user);
+        $nama_user = $this->db->get()->row_array();
+
+        // Ubah Array menjadi String
+        $new_nama = implode(" ", $nama_user);
+
+        $data['reco'] = $this->getRecommendations($matrix, $new_nama);
 
         $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/detail_apply', $data);
         $this->load->view('templates/footer_admin');
+    }
+
+    private function similarity_distance($matrix, $person1, $person2)
+    {
+        $similar = array();
+        $sum = 0;
+
+        foreach ($matrix[$person1] as $key => $value) {
+            if (array_key_exists($key, $matrix[$person2])) {
+                $similar[$key] = 1;
+            }
+        }
+
+        if (($similar) == 0) {
+            return 0;
+        }
+
+        // Eucalidean Distance
+        foreach ($matrix[$person1] as $key => $value) {
+            if (array_key_exists($key, $matrix[$person2])) {
+                $sum = $sum + pow($value - $matrix[$person2][$key], 2);
+            }
+        }
+
+        // Similarity
+        return 1 / (1 + sqrt($sum));
+    }
+
+    private function getRecommendations($matrix, $person)
+    {
+        $total = array();
+        $simsum = array();
+        $ranks = array();
+
+        foreach ($matrix as $otherPerson => $value) {
+            if ($otherPerson != $person) {
+                $sim = $this->similarity_distance($matrix, $person, $otherPerson);
+                // var_dump($sim);
+                // die;
+
+                // Weighted Sum
+                foreach ($matrix[$otherPerson] as $key => $value) {
+                    if (!array_key_exists($key, $matrix[$person])) {
+                        if (!array_key_exists($key, $total)) {
+                            $total[$key] = 0;
+                        }
+
+                        $total[$key] += $matrix[$otherPerson][$key] * $sim;
+
+                        if (!array_key_exists($key, $simsum)) {
+                            $simsum[$key] = 0;
+                        }
+
+                        $simsum[$key] += $sim;
+                    }
+                }
+            }
+        }
+
+        foreach ($total as $key => $value) {
+            $ranks[$key] = $value / $simsum[$key];
+        }
+
+        // Sorting DESC
+        array_multisort($ranks, SORT_DESC);
+
+        // View 3 Highest Ranks
+        $limit = 3;
+        $ranks_limit = array_slice($ranks, 0, $limit);
+
+        return $ranks_limit;
     }
 }
