@@ -16,20 +16,20 @@
                     <p class="__company-telepon">No Telepon<span><?= $company['no_telepon']; ?></span></p>
                 </div>
             </div>
-            <h2 class="__company-about">About <?= $company['nama_company']; ?></h2>
+            <h2 class="__company-about">Tentang <?= $company['nama_company']; ?></h2>
             <p class="__company-desc"><?= $company['deskripsi']; ?></p>
         </div>
     </div>
     <div class="__company-detail-card __height">
         <div class="card-body __sizeof">
             <img src="<?= base_url('asset/company_img/') . $company['logo']; ?>" alt="" style="width: 200px; height: 200px">
-            <p class="__rating">Rating <?= $company['rating']; ?><img src="<?= base_url(); ?>asset/icon/rating.svg" alt="" style="width: 24px; height: 24px"></p>
+            <p class="__rating">Rating <?= number_format((float)$company['rating'], 1, '.', ''); ?><img src="<?= base_url(); ?>asset/icon/rating.svg" alt="" style="width: 24px; height: 24px"></p>
         </div>
     </div>
 </div>
 
 <div class="__company-vacancy">
-    <h1>Jobs Vacancy</h1>
+    <h1>Lowongan yang Tersedia</h1>
     <div class="__company-vacancy-container">
         <?php foreach ($company_job as $cj) : ?>
             <div class="__jobs-content-card card">
@@ -41,7 +41,7 @@
                                 <img src="<?= base_url(); ?>asset/icon/location.svg" alt="">
                                 <p><?= $cj['lokasi']; ?> <span>(<?= $cj['tipe_kerja']; ?>)</span></p>
                             </div>
-                            <div class="__job-content-exp">
+                            <div class="__job-content-loc">
                                 <img src="<?= base_url(); ?>asset/icon/experiences.svg" alt="">
                                 <p><?= $cj['batasan']; ?></p>
                             </div>

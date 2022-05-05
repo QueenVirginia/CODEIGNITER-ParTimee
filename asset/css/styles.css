@@ -437,6 +437,7 @@ span {
 .__jobs-company-card img {
 	width: 70px;
 	height: 70px;
+	margin-bottom: 2px;
 }
 
 .__jobs-company-body {
@@ -1095,6 +1096,15 @@ span {
 
 .__btn-back-to-jobs {
 	width: 200px;
+	padding: 16px;
+	font-size: 14px;
+	font-weight: 600;
+	background-color: #0D6EFD;
+	border-radius: 0;
+}
+
+.__btn-back-to-company {
+	width: 250px;
 	padding: 16px;
 	font-size: 14px;
 	font-weight: 600;

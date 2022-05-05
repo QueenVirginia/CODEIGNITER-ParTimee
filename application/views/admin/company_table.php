@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Manage Company</h1>
+    <h1 class="h3 mb-4 text-gray-800">Kelola Perusahaan</h1>
     <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
         For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
@@ -16,7 +16,7 @@
         <!-- Topbar Search -->
         <form method="POST" class="d-none d-sm-inline-block form-inline mb-md-4 mx-auto col-6 navbar-search">
             <div class="input-group">
-                <input type="text" class="form-control bg-white border-0 small" placeholder="Cari berdasarkan ID Perusahaan, Nama Perusahaan, Kantor Pusat, Rating atau Industri..." name="cari_company">
+                <input type="text" class="form-control bg-white border-0 small" placeholder="Cari berdasarkan ID Perusahaan, Nama Perusahaan, Kantor Pusat atau Industri..." name="cari_company">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search fa-sm"></i>
@@ -67,7 +67,7 @@
                                 <td><img src="<?= base_url('asset/company_img/') . $c['logo']; ?>" width="60px" height="60px"></td>
                                 <td><?= $c['nama_company']; ?></td>
                                 <td><?= $c['kantor_pusat']; ?></td>
-                                <td><?= $c['rating']; ?></td>
+                                <td><?= number_format((float)$c['rating'], 1, '.', ''); ?></td>
                                 <td><?= $c['industri']; ?></td>
                                 <td>
                                     <a href="<?= base_url(); ?>admin/detail_company/<?= $c['id_company']; ?>" class="btn btn-primary">Lihat</a>

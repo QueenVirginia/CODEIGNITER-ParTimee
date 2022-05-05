@@ -18,18 +18,12 @@ class ForYou extends CI_Controller
             $data['company'] = $this->Company_model->searchCompany();
         }
 
-        $this->db->select('user.nama, company.nama_company, company.rating as company_rating, company.kantor_pusat, user.nama, apply.rating as apply_rating');
+        $this->db->select('user.nama, company.nama_company, company.kantor_pusat, user.nama, apply.rating as apply_rating');
         $this->db->from('apply');
         $this->db->join('company', 'company.id_company= apply.id_company');
         $this->db->join('user', 'user.id_user= apply.id_user');
         $this->db->where('apply.response', 1);
         $algos = $this->db->get()->result_array();
-
-        // $this->db->select('*');
-        // $this->db->from('algo');
-        // $this->db->join('jobs', 'jobs.id_job= algo.id_job');
-        // $this->db->join('user', 'user.id_user= algo.id_user');
-        // $algos = $this->db->get()->result_array();
 
         // Select nama user yang menampilkan nama_company dan rating
         foreach ($algos as $alg) {

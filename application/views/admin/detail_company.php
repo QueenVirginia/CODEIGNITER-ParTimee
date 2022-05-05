@@ -19,10 +19,10 @@
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">Kantor Pusat</h6>
                     <h5 class="mb-0 card-title text-primary"><?= $company['kantor_pusat']; ?></h5>
                 </li>
-                <li class="list-group-item">
+                <!-- <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">Rating</h6>
                     <h5 class="mb-0 card-title text-primary"><?= $company['rating']; ?></h5>
-                </li>
+                </li> -->
                 <li class="list-group-item">
                     <h6 class="card-subtitle mt-2 mb-2 text-dark">Industri</h6>
                     <h5 class="mb-0 card-title text-primary"><?= $company['industri']; ?></h5>

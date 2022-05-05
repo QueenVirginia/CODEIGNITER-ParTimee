@@ -15,9 +15,9 @@
       <div class="__jobs-description-header card-body">
         <div class="__jobs-title-company">
           <h1><?= $jobs['nama_job']; ?></h1>
-          <p>
+          <!-- <p>
             <?= $jobs['nama_company']; ?><span><?= $jobs['rating']; ?><img src="<?= base_url(); ?>asset/icon/rating.svg" alt="" style="width: 20px; height: 20px;"></span>
-          </p>
+          </p> -->
         </div>
         <div class="__jobs-description-detail">
           <div class="__jobs-description-detail-icon">
@@ -68,7 +68,7 @@
     <div class="__jobs-company-card __shadow">
       <img src="<?= base_url('asset/company_img/') . $jobs['logo']; ?>" class="card-img-top" alt="...">
       <div class="__jobs-company-body card-body">
-        <h1 class="card-title" style="margin-bottom: 8px;"><?= $jobs['nama_company']; ?> <span><?= $jobs['rating']; ?> <img src="<?= base_url(); ?>asset/icon/rating.svg" alt=""></span></h1>
+        <h1 class="card-title" style="margin-bottom: 8px;"><?= $jobs['nama_company']; ?> <span><?= number_format((float)$jobs['rating'], 1, '.', ''); ?> <img src="<?= base_url(); ?>asset/icon/rating.svg" alt=""></span></h1>
         <div class="__job-content-detail">
           <div class="__job-content-loc">
             <img src="<?= base_url(); ?>asset/icon/location.svg" alt="" style="width: 20px; height: 20px;">

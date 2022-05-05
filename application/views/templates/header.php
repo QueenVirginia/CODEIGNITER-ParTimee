@@ -18,7 +18,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFFFFF;">
         <div class="__navbar-nav navbar-nav container-fluid">
-            <a class="__navbar-logo navbar-brand" href="<?= base_url() ?>">PartTimee</a>
+            <a class="__navbar-logo navbar-brand" href="<?= base_url() ?>">ParTimee</a>
             <div class="collapse navbar-collapse float-end" id="navbarNavAltMarkup" style="justify-content: center;">
                 <div class="navbar-nav">
                     <a class="nav-link" aria-current="page" href="<?= base_url() ?>jobslist">Lowongan</a>

@@ -6,6 +6,7 @@ class Admin_model extends CI_Model
     public function getAllUser()
     {
         $this->db->order_By('id_user', 'ASC');
+
         $query = $this->db->get('User');
         return $query->result_array();
     }
@@ -32,7 +33,6 @@ class Admin_model extends CI_Model
         $this->db->like('id_user', $keyword);
         $this->db->or_like('nama', $keyword);
         $this->db->or_like('email', $keyword);
-        $this->db->or_like('no_telepon', $keyword);
         return $this->db->get('user')->result_array();
     }
 
@@ -40,6 +40,7 @@ class Admin_model extends CI_Model
     public function getAllJobs()
     {
         $this->db->order_By('id_job', 'DESC');
+
         $query = $this->db->get('Jobs');
         return $query->result_array();
     }
@@ -50,6 +51,7 @@ class Admin_model extends CI_Model
         $this->db->from('jobs');
         $this->db->join('company', 'company.id_company = jobs.id_company');
         $this->db->where('id_job', $id_job);
+
         return $this->db->get()->row_array();
     }
 
@@ -59,6 +61,7 @@ class Admin_model extends CI_Model
         $this->db->from('jobs');
         $this->db->join('company', 'company.id_company = jobs.id_company');
         $this->db->where('id_job', $id_job);
+
         $query = $this->db->get();
         return $query->row_array();
     }
@@ -76,6 +79,7 @@ class Admin_model extends CI_Model
         $this->db->or_like('lokasi', $keyword);
         $this->db->or_like('batasan', $keyword);
         $this->db->or_like('tipe_kerja', $keyword);
+
         return $this->db->get('jobs')->result_array();
     }
 
@@ -121,22 +125,15 @@ class Admin_model extends CI_Model
     // =============================== COMPANY ===============================
     public function getAllCompany()
     {
-        $this->db->order_By('id_company', 'ASC');
-        $query = $this->db->get('Company');
+        $this->db->select('company.id_company, company.nama_company, company.logo, company.kantor_pusat, company.industri, apply.id_apply, AVG(apply.rating) as rating');
+        $this->db->from('company');
+        $this->db->join('apply', 'apply.id_company = company.id_company');
+        $this->db->order_by('id_company', 'ASC');
+        $this->db->group_by('company.id_company');
+
+        $query = $this->db->get();
         return $query->result_array();
     }
-
-    // public function getAllCompanyJoin()
-    // {
-    //     $this->db->select('count(company.id_company) as count, company.id_company, company.nama_company, company.rating, company.kantor_pusat');
-    //     $this->db->from('company');
-    //     $this->db->join('jobs', 'jobs.id_company = company.id_company');
-    //     $this->db->group_by('jobs.id_company');
-    //     $this->db->order_By('nama_company', 'ASC');
-    //     $query = $this->db->get();
-
-    //     return $query->result_array();
-    // }
 
     public function getCompanyById($id_company)
     {
@@ -151,12 +148,19 @@ class Admin_model extends CI_Model
     public function searchCompany()
     {
         $keyword = $this->input->post('cari_company', TRUE);
-        $this->db->like('id_company', $keyword);
-        $this->db->or_like('nama_company', $keyword);
-        $this->db->or_like('kantor_pusat', $keyword);
-        $this->db->or_like('rating', $keyword);
-        $this->db->or_like('industri', $keyword);
-        return $this->db->get('company')->result_array();
+
+        $this->db->select('company.id_company, company.nama_company, company.logo, company.kantor_pusat, company.industri, apply.id_apply, AVG(apply.rating) as rating');
+        $this->db->from('company');
+        $this->db->join('apply', 'apply.id_company = company.id_company');
+        $this->db->like('company.id_company', $keyword);
+        $this->db->or_like('company.nama_company', $keyword);
+        $this->db->or_like('company.kantor_pusat', $keyword);
+        $this->db->or_like('company.industri', $keyword);
+        $this->db->order_by('company.id_company', 'ASC');
+        $this->db->group_by('company.id_company');
+        $query = $this->db->get();
+
+        return $query->result_array();
     }
 
     public function deleteDataCompany($id_company)
@@ -184,12 +188,12 @@ class Admin_model extends CI_Model
     // =============================== DATA APPLY ===============================
     public function getAllDataApply()
     {
-        $this->db->select('apply.id_apply, apply.rating as rating_apply, company.nama_company, user.nama, jobs.nama_job, user.id_user');
+        $this->db->select('apply.id_apply, apply.rating as rating_apply, apply.response, company.nama_company, user.nama, jobs.nama_job, user.id_user');
         $this->db->from('apply');
-        $this->db->join('company', 'company.id_company = apply.id_company');
+        $this->db->join('company', 'company.id_company = apply.id_company', 'left');
         $this->db->join('jobs', 'jobs.id_job = apply.id_job');
         $this->db->join('user', 'user.id_user = apply.id_user');
-        $this->db->group_by('user.id_user, company.id_company, jobs.id_job');
+        $this->db->group_by('user.id_user, jobs.id_job, company.id_company');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -207,7 +211,7 @@ class Admin_model extends CI_Model
     public function deleteDataApply($id_apply)
     {
         $this->db->where('id_apply', $id_apply);
-        $this->db->delete('applt');
+        $this->db->delete('apply');
     }
 
     public function searchApply()

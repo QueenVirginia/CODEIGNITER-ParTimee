@@ -1,10 +1,9 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-4 pl-4 text-gray-800">Ubah Perusahaan</h1>
 
-<div class="mb-4 pl-4 col-md-8">
-    <?= form_open_multipart('admin/edit_company') ?>
+<form action="" method="POST" class="mb-4 pl-4 col-md-8">
     <input type="hidden" name="id" value="<?= $company['id_company'] ?>">
-    <img src="<?= base_url('asset/company_img/') . $company['logo']; ?>" class="img-thumbnail">
+    <!-- <img src="<?= base_url('asset/company_img/') . $company['logo']; ?>" class="img-thumbnail"> -->
     <!-- <div class="input-group mb-3 mt-3">
         <input type="file" class="form-control" id="logo" name="logo" style="height: fit-content;">
     </div> -->
@@ -18,10 +17,10 @@
         <input type="text" name="kantor_pusat" class="form-control" id="kantor_pusat" value="<?= $company['kantor_pusat'] ?>">
         <div class="form-text text-danger"><?= form_error('kantor_pusat'); ?></div>
     </div>
-    <div class="form-group mt-3">
+    <!-- <div class="form-group mt-3">
         <label for="rating">Rating</label>
         <input type="text" name="rating" class="form-control" id="rating" value="<?= $company['rating'] ?>" disabled>
-    </div>
+    </div> -->
     <div class="form-group mt-3">
         <label for="industri">Industri</label>
         <input type="text" name="industri" class="form-control" id="industri" value="<?= $company['industri'] ?>">
@@ -42,6 +41,5 @@
         <textarea name="deskripsi" class="form-control" id="deskripsi" rows="5"><?= $company['deskripsi'] ?></textarea>
         <div class="form-text text-danger"><?= form_error('deskripsi'); ?></div>
     </div>
-    <button type="submit" name="edit_company" class="btn btn-primary float-end">Save Job</button>
-    </form>
-</div>
+    <button type="submit" name="edit_company" class="btn btn-primary float-end">Simpan Perubahaan</button>
+</form>
