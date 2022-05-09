@@ -54,7 +54,7 @@
                     <tbody>
                         <?php if (empty($jobs)) : ?>
                             <div class="__empty-state mb-4 text-center">
-                                <h1>Sorry</h1>
+                                <h1>Maaf</h1>
                                 <p class="text-muted">Kami tidak menemukan pekerjaan yang Anda cari.</p>
                                 <a href="<?= base_url(); ?>admin/job_list" class="__btn-back-to-jobs btn btn-primary">Kembali</a>
                             </div>

@@ -55,7 +55,7 @@
                     <tbody>
                         <?php if (empty($company)) : ?>
                             <div class="__empty-state mb-4 text-center">
-                                <h1>Sorry</h1>
+                                <h1>Maaf</h1>
                                 <p class="text-muted">Kami tidak dapat menemukan perusahaan yang Anda cari.</p>
                                 <a href="<?= base_url(); ?>admin/company_list" class="__btn-back-to-jobs btn btn-primary">Kembali</a>
                             </div>

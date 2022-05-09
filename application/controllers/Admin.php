@@ -357,7 +357,7 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user_data'] = $this->Admin_model->getUserById($id_user);
 
-        $this->db->select('user.nama, company.nama_company, company.rating as company_rating, company.kantor_pusat, user.nama, apply.rating as apply_rating');
+        $this->db->select('user.nama, company.nama_company, company.kantor_pusat, user.nama, apply.rating as apply_rating');
         $this->db->from('apply');
         $this->db->join('company', 'company.id_company= apply.id_company');
         $this->db->join('user', 'user.id_user= apply.id_user');

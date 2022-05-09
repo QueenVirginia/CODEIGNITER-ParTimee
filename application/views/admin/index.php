@@ -38,7 +38,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $count_jobs; ?></div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-suitcase fa-2x text-success"></i>
+                            <i class="fas fa-briefcase fa-2x text-success"></i>
                         </div>
                     </div>
                 </div>

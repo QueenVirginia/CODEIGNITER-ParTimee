@@ -46,7 +46,7 @@
                         <div class=" form-text text-danger"><?= form_error('deskripsi_job'); ?></div>
                     </div>
                     <div class="form-group mt-3">
-                        <label for="benefit_job">Lokasi</label>
+                        <label for="benefit_job">Keuntungan</label>
                         <textarea name="benefit_job" class="form-control" id="benefit_job" rows="5" value="<?= set_value('benefit_job'); ?>"></textarea>
                         <div class="form-text text-danger"><?= form_error('benefit_job'); ?></div>
                     </div>
