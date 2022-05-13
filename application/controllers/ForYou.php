@@ -18,11 +18,12 @@ class ForYou extends CI_Controller
             $data['company'] = $this->Company_model->searchCompany();
         }
 
-        $this->db->select('user.nama, company.nama_company, company.kantor_pusat, user.nama, apply.rating as apply_rating');
+        $this->db->select('user.nama, company.nama_company, company.kantor_pusat, user.nama, AVG(apply.rating) as apply_rating');
         $this->db->from('apply');
         $this->db->join('company', 'company.id_company= apply.id_company');
         $this->db->join('user', 'user.id_user= apply.id_user');
         $this->db->where('apply.response', 1);
+        $this->db->group_by('user.id_user, company.id_company');
         $algos = $this->db->get()->result_array();
 
         // Select nama user yang menampilkan nama_company dan rating
@@ -30,16 +31,11 @@ class ForYou extends CI_Controller
             $matrix[$alg['nama']][$alg['nama_company']] = $alg['apply_rating'];
         }
 
-        // Ambil nama user aktif
+        // Mengambil nama user aktif
         $this->db->select('nama');
         $this->db->from('user');
         $this->db->where('email', $this->session->userdata('email'));
         $nama_user = $this->db->get()->row_array();
-
-        // echo '<pre>';
-        // var_dump($matrix);
-        // echo '</pre>';
-        // die;
 
         // Ubah Array menjadi String
         $new_nama = implode(" ", $nama_user);
@@ -86,7 +82,6 @@ class ForYou extends CI_Controller
         foreach ($matrix as $otherPerson => $value) {
             if ($otherPerson != $person) {
                 $sim = $this->similarity_distance($matrix, $person, $otherPerson);
-                // var_dump($sim);
 
                 // Weighted Sum
                 foreach ($matrix[$otherPerson] as $key => $value) {

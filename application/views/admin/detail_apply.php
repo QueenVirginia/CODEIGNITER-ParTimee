@@ -8,7 +8,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Nama Company</th>
+                            <th>Nama Perusahaan</th>
                             <th>Prediksi Rating</th>
                         </tr>
                     </thead>

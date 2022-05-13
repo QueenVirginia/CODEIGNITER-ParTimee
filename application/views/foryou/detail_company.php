@@ -1,5 +1,5 @@
 <div class="__jobs-back">
-    <a href="<?= base_url(); ?>foryou"><img src="<?= base_url(); ?>asset/icon/back.svg" alt="" style="width: 24px; height: 24px;">Back</a>
+    <a href="<?= base_url(); ?>foryou"><img src="<?= base_url(); ?>asset/icon/back.svg" alt="" style="width: 24px; height: 24px;">Kembali</a>
 </div>
 
 <div class="__company-detail">

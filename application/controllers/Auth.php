@@ -66,9 +66,9 @@ class Auth extends CI_Controller
             'is_unique' => 'Email ini sudah terdaftar!',
 
         ]);
-        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[8]|matches[password2]', [
             'matches' => '  Password tidak sama!',
-            'min_length' => 'Password terlalu pendek!'
+            'min_length' => 'Password terlalu pendek! minimal panjang password 8'
         ]);
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
 
@@ -80,12 +80,7 @@ class Auth extends CI_Controller
             $data = [
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-                'no_telepon' => $this->input->post('no_telepon'),
-                'facebook' => $this->input->post('facebook'),
-                'instagram' => $this->input->post('instagram'),
-                'linkedin' => $this->input->post('linkedin'),
                 'foto' => 'default.jpeg',
-                'cv' => 'default.pdf',
                 'id_role' => 2,
                 'tanggal_buat' => time(),
                 'email' => htmlspecialchars($this->input->post('email', true))

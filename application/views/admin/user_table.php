@@ -1,9 +1,7 @@
-<!-- Begin Page Content -->
 <div class="container-fluid">
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Kelola User</h1>
-
 
     <!-- Topbar Search -->
     <form method="POST" class="d-none d-sm-inline-block form-inline mb-md-4 mx-auto col-6 navbar-search">
@@ -68,7 +66,5 @@
     </div>
 
 </div>
-<!-- /.container-fluid -->
 
 </div>
-<!-- End of Main Content -->

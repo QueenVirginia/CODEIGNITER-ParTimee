@@ -55,8 +55,8 @@
                 </div>
                 <div class="modal-body">Apakah Anda yakin untuk keluar dari website?</div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tidak</button>
-                    <a class="btn btn-outline-danger" href="<?= base_url() ?>auth/logout">Logout</a>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Tidak</button>
+                    <a class="btn btn-light" href="<?= base_url() ?>auth/logout">Logout</a>
                 </div>
             </div>
         </div>
