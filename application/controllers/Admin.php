@@ -237,7 +237,6 @@ class Admin extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->form_validation->set_rules('logo', 'Logo', 'required');
         $this->form_validation->set_rules('nama_company', 'Company Name', 'required');
         $this->form_validation->set_rules('kantor_pusat', 'Office Base', 'required');
         $this->form_validation->set_rules('industri', 'Industry', 'required');

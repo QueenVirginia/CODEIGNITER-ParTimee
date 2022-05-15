@@ -26,21 +26,24 @@ class ForYou extends CI_Controller
         $this->db->group_by('user.id_user, company.id_company');
         $algos = $this->db->get()->result_array();
 
-        // Select nama user yang menampilkan nama_company dan rating
-        foreach ($algos as $alg) {
-            $matrix[$alg['nama']][$alg['nama_company']] = $alg['apply_rating'];
+        if ($algos != NULL) {
+
+            // Select nama user yang menampilkan nama_company dan rating
+            foreach ($algos as $alg) {
+                $matrix[$alg['nama']][$alg['nama_company']] = $alg['apply_rating'];
+            }
+
+            // Mengambil nama user aktif
+            $this->db->select('nama');
+            $this->db->from('user');
+            $this->db->where('email', $this->session->userdata('email'));
+            $nama_user = $this->db->get()->row_array();
+
+            // Ubah Array menjadi String
+            $new_nama = implode(" ", $nama_user);
+
+            $data['rec'] = $this->getRecommendations($matrix, $new_nama);
         }
-
-        // Mengambil nama user aktif
-        $this->db->select('nama');
-        $this->db->from('user');
-        $this->db->where('email', $this->session->userdata('email'));
-        $nama_user = $this->db->get()->row_array();
-
-        // Ubah Array menjadi String
-        $new_nama = implode(" ", $nama_user);
-
-        $data['rec'] = $this->getRecommendations($matrix, $new_nama);
 
         $this->load->view('templates/header', $data);
         $this->load->view('foryou/index', $data);
@@ -62,7 +65,7 @@ class ForYou extends CI_Controller
             return 0;
         }
 
-        // Eucalidean Distance
+        // Euclidean Distance
         foreach ($matrix[$person1] as $key => $value) {
             if (array_key_exists($key, $matrix[$person2])) {
                 $sum = $sum + pow($value - $matrix[$person2][$key], 2);

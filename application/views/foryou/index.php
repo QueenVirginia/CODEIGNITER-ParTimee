@@ -66,7 +66,7 @@
     </div>
 <?php endif; ?>
 
-<div class="__rec-company">
+<div class="__rec-company" style="margin-bottom: 60px" ;>
     <?php foreach ($company as $c) : ?>
         <div class="__jobs-company-card __rec-company-container card">
             <div class="__container-card __rec-company-card">
