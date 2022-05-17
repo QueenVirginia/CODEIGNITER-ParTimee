@@ -1,4 +1,6 @@
 <!-- Page Heading -->
+<a class="pl-4" href="<?= base_url(); ?>admin/job_list"><img src="<?= base_url(); ?>asset/icon/back.svg" alt="" style="width: 24px; height: 24px;">Kembali</a>
+
 <h1 class="h3 mb-4 pl-4 text-gray-800">Tambah Lowongan Baru</h1>
 
 <div class="row mt-3 pl-4">
@@ -42,7 +44,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="deskripsi_job">Deskripsi</label>
-                        <textarea name="deskripsi_job" class="form-control" id="deskripsi_job" rows="5" value="<?= set_value('deskripsi_job'); ?>"></textarea>
+                        <textarea name="deskripsi_job" class="form-control" id="deskripsi_job" rows="10" value="<?= set_value('deskripsi_job'); ?>"></textarea>
                         <div class=" form-text text-danger"><?= form_error('deskripsi_job'); ?></div>
                     </div>
                     <div class="form-group mt-3">

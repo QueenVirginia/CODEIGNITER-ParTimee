@@ -1,4 +1,6 @@
 <!-- Page Heading -->
+<a class="pl-4" href="<?= base_url(); ?>admin/company_list"><img src="<?= base_url(); ?>asset/icon/back.svg" alt="" style="width: 24px; height: 24px;">Kembali</a>
+
 <h1 class="h3 mb-4 pl-4 text-gray-800">Tambah Perusahaan Baru</h1>
 
 <div class="mb-4 pl-4 col-md-8">
@@ -35,7 +37,7 @@
     </div>
     <div class="form-group mt-3">
         <label for="deskripsi">Deskripsi</label>
-        <textarea name="deskripsi" class="form-control" id="deskripsi" rows="5"></textarea>
+        <textarea name="deskripsi" class="form-control" id="deskripsi" rows="10"></textarea>
         <div class="form-text text-danger"><?= form_error('deskripsi'); ?></div>
     </div>
     <button type="submit" name="add_company" class="btn btn-primary float-end">Simpan Perusahaan</button>

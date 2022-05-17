@@ -128,7 +128,7 @@ class Admin_model extends CI_Model
         $this->db->select('company.id_company, company.nama_company, company.logo, company.kantor_pusat, company.industri, apply.id_apply, AVG(apply.rating) as rating');
         $this->db->from('company');
         $this->db->join('apply', 'apply.id_company = company.id_company', 'left');
-        $this->db->order_by('id_company', 'ASC');
+        $this->db->order_by('id_company', 'DESC');
         $this->db->group_by('company.id_company');
 
         $query = $this->db->get();
@@ -151,7 +151,7 @@ class Admin_model extends CI_Model
 
         $this->db->select('company.id_company, company.nama_company, company.logo, company.kantor_pusat, company.industri, apply.id_apply, AVG(apply.rating) as rating');
         $this->db->from('company');
-        $this->db->join('apply', 'apply.id_company = company.id_company');
+        $this->db->join('apply', 'apply.id_company = company.id_company', 'left');
         $this->db->like('company.id_company', $keyword);
         $this->db->or_like('company.nama_company', $keyword);
         $this->db->or_like('company.kantor_pusat', $keyword);
@@ -191,8 +191,8 @@ class Admin_model extends CI_Model
         $this->db->select('apply.id_apply, apply.rating as rating_apply, apply.response, company.nama_company, user.nama, jobs.nama_job, user.id_user');
         $this->db->from('apply');
         $this->db->join('company', 'company.id_company = apply.id_company', 'left');
-        $this->db->join('jobs', 'jobs.id_job = apply.id_job');
-        $this->db->join('user', 'user.id_user = apply.id_user');
+        $this->db->join('jobs', 'jobs.id_job = apply.id_job', 'left');
+        $this->db->join('user', 'user.id_user = apply.id_user', 'left');
         $this->db->group_by('user.id_user, jobs.id_job, company.id_company');
         $query = $this->db->get();
         return $query->result_array();

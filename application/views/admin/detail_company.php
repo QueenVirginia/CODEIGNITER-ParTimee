@@ -1,4 +1,6 @@
 <!-- Page Heading -->
+<a class="pl-4" href="<?= base_url(); ?>admin/company_list"><img src="<?= base_url(); ?>asset/icon/back.svg" alt="" style="width: 24px; height: 24px;">Kembali</a>
+
 <h1 class="h3 mb-4 pl-4 text-gray-800">Detail Perusahaan</h1>
 
 <div class="row mt-3 pl-4 mb-4">

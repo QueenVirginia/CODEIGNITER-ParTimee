@@ -1,5 +1,7 @@
 <div class="container-fluid">
 
+    <a href="<?= base_url(); ?>admin/apply_list"><img src="<?= base_url(); ?>asset/icon/back.svg" alt="" style="width: 24px; height: 24px;">Kembali</a>
+
     <h1 class="h3 mb-4 text-gray-800">Detail Rekomendasi</h1>
 
     <div class="card shadow mb-4">
