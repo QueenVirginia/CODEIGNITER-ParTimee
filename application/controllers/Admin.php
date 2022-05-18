@@ -385,7 +385,7 @@ class Admin extends CI_Controller
             }
         }
 
-        if (($similar) == 0) {
+        if ($similar == 0) {
             return 0;
         }
 
@@ -409,8 +409,6 @@ class Admin extends CI_Controller
         foreach ($matrix as $otherPerson => $value) {
             if ($otherPerson != $person) {
                 $sim = $this->similarity_distance($matrix, $person, $otherPerson);
-                // var_dump($sim);
-                // die;
 
                 // Weighted Sum
                 foreach ($matrix[$otherPerson] as $key => $value) {

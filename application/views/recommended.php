@@ -35,7 +35,6 @@ function getRecommendations($matrix, $person)
     foreach ($matrix as $otherPerson => $value) {
         if ($otherPerson != $person) {
             $sim = similarity_distance($matrix, $person, $otherPerson);
-            var_dump($sim);
 
             foreach ($matrix[$otherPerson] as $key => $value) {
                 if (!array_key_exists($key, $matrix[$person])) {

@@ -18,15 +18,21 @@ class ForYou extends CI_Controller
             $data['company'] = $this->Company_model->searchCompany();
         }
 
-        $this->db->select('user.nama, company.nama_company, company.kantor_pusat, user.nama, AVG(apply.rating) as apply_rating');
+        $this->db->select('apply.id_user, user.id_user');
         $this->db->from('apply');
-        $this->db->join('company', 'company.id_company= apply.id_company');
-        $this->db->join('user', 'user.id_user= apply.id_user');
+        $this->db->join('user', 'user.id_user = apply.id_user');
+        $this->db->where('user.email', $this->session->userdata('email'));
         $this->db->where('apply.response', 1);
-        $this->db->group_by('user.id_user, company.id_company');
-        $algos = $this->db->get()->result_array();
+        $check_user = $this->db->get()->result_array();
 
-        if ($algos != NULL) {
+        if ($check_user != NULL) {
+            $this->db->select('user.nama, company.nama_company, company.kantor_pusat, user.nama, AVG(apply.rating) as apply_rating');
+            $this->db->from('apply');
+            $this->db->join('company', 'company.id_company= apply.id_company');
+            $this->db->join('user', 'user.id_user= apply.id_user');
+            $this->db->where('apply.response', 1);
+            $this->db->group_by('user.id_user, company.id_company');
+            $algos = $this->db->get()->result_array();
 
             // Select nama user yang menampilkan nama_company dan rating
             foreach ($algos as $alg) {

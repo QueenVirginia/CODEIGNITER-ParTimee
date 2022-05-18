@@ -7,7 +7,7 @@ class Admin_model extends CI_Model
     {
         $this->db->order_By('id_user', 'ASC');
 
-        $query = $this->db->get('User');
+        $query = $this->db->get('user');
         return $query->result_array();
     }
 
@@ -39,9 +39,9 @@ class Admin_model extends CI_Model
     // =============================== JOBS ===============================
     public function getAllJobs()
     {
-        $this->db->select('jobs.id_job, jobs.nama_job, jobs.lokasi, jobs.tipe_kerja, jobs.batasan, company.nama_company');
+        $this->db->select('jobs.id_job, jobs.nama_job, jobs.lokasi, jobs.tipe_kerja, jobs.batasan, company.nama_company, company.id_company');
         $this->db->from('jobs');
-        $this->db->join('company', 'company.id_company = jobs.id_job');
+        $this->db->join('company', 'company.id_company = jobs.id_company', 'left');
         $this->db->order_By('id_job', 'DESC');
 
         return $this->db->get()->result_array();
@@ -79,7 +79,7 @@ class Admin_model extends CI_Model
 
         $this->db->select('jobs.id_job, jobs.nama_job, jobs.lokasi, jobs.tipe_kerja, jobs.batasan, company.nama_company');
         $this->db->from('jobs');
-        $this->db->join('company', 'company.id_company = jobs.id_job');
+        $this->db->join('company', 'company.id_company = jobs.id_job', 'left');
         $this->db->like('jobs.id_job', $keyword);
         $this->db->or_like('jobs.nama_job', $keyword);
         $this->db->or_like('jobs.lokasi', $keyword);
