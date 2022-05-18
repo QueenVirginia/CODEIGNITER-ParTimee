@@ -6,7 +6,7 @@
     <!-- Topbar Search -->
     <form method="POST" class="d-none d-sm-inline-block form-inline mb-md-4 mx-auto col-6 navbar-search">
         <div class="input-group">
-            <input type="text" class="form-control bg-white border-0 small" placeholder="Cari berdasarkan ID User, Nama atau Email..." name="cari_user">
+            <input type="text" class="form-control bg-white border-0 small" placeholder="Cari berdasarkan ID, Nama atau Email..." name="cari_user">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="submit">
                     <i class="fas fa-search fa-sm"></i>

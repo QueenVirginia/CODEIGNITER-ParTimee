@@ -15,7 +15,7 @@
         <!-- Topbar Search -->
         <form method="POST" class="d-none d-sm-inline-block form-inline mb-md-4 mx-auto col-6 navbar-search">
             <div class="input-group">
-                <input type="text" class="form-control bg-white border-0 small" placeholder="Cari berdasarkan ID Lowongan, Nama Pekerjaan, Lokasi, Status atau Tipe Pekerjaan..." name="cari_job">
+                <input type="text" class="form-control bg-white border-0 small" placeholder="Cari berdasarkan ID, Nama Pekerjaan, Nama Perusahaan, Lokasi, Status atau Tipe Pekerjaan..." name="cari_job">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search fa-sm"></i>
@@ -44,10 +44,10 @@
                         <tr>
                             <th>ID Lowongan</th>
                             <th>Nama Pekerjaan</th>
+                            <th>Nama Perusahaan</th>
                             <th>Lokasi</th>
                             <th>Status</th>
                             <th>Tipe Pekerjaan</th>
-                            <th>Link</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -64,10 +64,10 @@
                             <tr>
                                 <td><?= $j['id_job']; ?></td>
                                 <td><?= $j['nama_job']; ?></td>
+                                <td><?= $j['nama_company']; ?></td>
                                 <td><?= $j['lokasi']; ?></td>
                                 <td><?= $j['batasan']; ?></td>
                                 <td><?= $j['tipe_kerja']; ?></td>
-                                <td><?= $j['link_apply']; ?></td>
                                 <td>
                                     <a href="<?= base_url(); ?>admin/detail_job/<?= $j['id_job']; ?>" class="btn btn-primary">Lihat</a>
                                     <a href="<?= base_url(); ?>admin/edit_job/<?= $j['id_job']; ?>" class="btn btn-success">Ubah</a>

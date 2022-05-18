@@ -99,16 +99,6 @@ class Admin extends CI_Controller
         redirect('admin/user_list');
     }
 
-    // public function detail_user($id_user)
-    // {
-    //     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-    //     $data['user_data'] = $this->Admin_model->getUserById($id_user);
-
-    //     $this->load->view('templates/header_admin', $data);
-    //     $this->load->view('admin/detail_user', $data);
-    //     $this->load->view('templates/footer_admin');
-    // }
-
     // =============================== JOB ===============================
     public function job_list()
     {

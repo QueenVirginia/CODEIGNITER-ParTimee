@@ -125,7 +125,7 @@ class ForYou extends CI_Controller
 
         foreach ($total as $key => $value) {
             if ($value == NULL) {
-                $this->index_test();
+                return 0;
             } else {
                 $ranks[$key] = $value / $simsum[$key];
             }

@@ -39,10 +39,12 @@ class Admin_model extends CI_Model
     // =============================== JOBS ===============================
     public function getAllJobs()
     {
+        $this->db->select('jobs.id_job, jobs.nama_job, jobs.lokasi, jobs.tipe_kerja, jobs.batasan, company.nama_company');
+        $this->db->from('jobs');
+        $this->db->join('company', 'company.id_company = jobs.id_job');
         $this->db->order_By('id_job', 'DESC');
 
-        $query = $this->db->get('Jobs');
-        return $query->result_array();
+        return $this->db->get()->result_array();
     }
 
     public function getJobById($id_job)
@@ -74,13 +76,18 @@ class Admin_model extends CI_Model
     public function searchJobs()
     {
         $keyword = $this->input->post('cari_job', TRUE);
-        $this->db->like('id_job', $keyword);
-        $this->db->or_like('nama_job', $keyword);
-        $this->db->or_like('lokasi', $keyword);
-        $this->db->or_like('batasan', $keyword);
-        $this->db->or_like('tipe_kerja', $keyword);
 
-        return $this->db->get('jobs')->result_array();
+        $this->db->select('jobs.id_job, jobs.nama_job, jobs.lokasi, jobs.tipe_kerja, jobs.batasan, company.nama_company');
+        $this->db->from('jobs');
+        $this->db->join('company', 'company.id_company = jobs.id_job');
+        $this->db->like('jobs.id_job', $keyword);
+        $this->db->or_like('jobs.nama_job', $keyword);
+        $this->db->or_like('jobs.lokasi', $keyword);
+        $this->db->or_like('jobs.batasan', $keyword);
+        $this->db->or_like('jobs.tipe_kerja', $keyword);
+        $this->db->or_like('company.nama_company', $keyword);
+
+        return $this->db->get()->result_array();
     }
 
     public function addDataJobs()
