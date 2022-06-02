@@ -346,28 +346,37 @@ class Admin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['user_data'] = $this->Admin_model->getUserById($id_user);
 
-        $this->db->select('user.nama, company.nama_company, company.kantor_pusat, user.nama, apply.rating as apply_rating');
+        $this->db->select('apply.id_user, user.id_user');
         $this->db->from('apply');
-        $this->db->join('company', 'company.id_company= apply.id_company');
-        $this->db->join('user', 'user.id_user= apply.id_user');
+        $this->db->join('user', 'user.id_user = apply.id_user');
+        $this->db->where('user.id_user', $id_user);
         $this->db->where('apply.response', 1);
-        $algos = $this->db->get()->result_array();
+        $check_user = $this->db->get()->result_array();
 
-        // Select nama user yang menampilkan nama_company dan rating
-        foreach ($algos as $alg) {
-            $matrix[$alg['nama']][$alg['nama_company']] = $alg['apply_rating'];
+        if ($check_user != NULL) {
+            $this->db->select('user.nama, company.nama_company, company.kantor_pusat, user.nama, apply.rating as apply_rating');
+            $this->db->from('apply');
+            $this->db->join('company', 'company.id_company= apply.id_company');
+            $this->db->join('user', 'user.id_user= apply.id_user');
+            $this->db->where('apply.response', 1);
+            $algos = $this->db->get()->result_array();
+
+            // Select nama user yang menampilkan nama_company dan rating
+            foreach ($algos as $alg) {
+                $matrix[$alg['nama']][$alg['nama_company']] = $alg['apply_rating'];
+            }
+
+            // Ambil nama user sesuai id
+            $this->db->select('nama');
+            $this->db->from('user');
+            $this->db->where('id_user', $id_user);
+            $nama_user = $this->db->get()->row_array();
+
+            // Ubah Array menjadi String
+            $new_nama = implode(" ", $nama_user);
+
+            $data['reco'] = $this->getRecommendations($matrix, $new_nama);
         }
-
-        // Ambil nama user sesuai id
-        $this->db->select('nama');
-        $this->db->from('user');
-        $this->db->where('id_user', $id_user);
-        $nama_user = $this->db->get()->row_array();
-
-        // Ubah Array menjadi String
-        $new_nama = implode(" ", $nama_user);
-
-        $data['reco'] = $this->getRecommendations($matrix, $new_nama);
 
         $this->load->view('templates/header_admin', $data);
         $this->load->view('admin/detail_apply', $data);
@@ -396,7 +405,7 @@ class Admin extends CI_Controller
             }
         }
 
-        // Similarity
+        // Normalisasi
         return 1 / (1 + sqrt($sum));
     }
 

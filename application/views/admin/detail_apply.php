@@ -15,12 +15,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($reco as $nama_company => $apply_rating) : ?>
-                            <tr>
-                                <td><?= $nama_company ?></td>
-                                <td><?= $apply_rating ?></td>
-                            </tr>
-                        <?php endforeach; ?>
+                        <?php if (!empty($reco)) : ?>
+                            <?php foreach ($reco as $nama_company => $apply_rating) : ?>
+                                <tr>
+                                    <td><?= $nama_company ?></td>
+                                    <td><?= $apply_rating ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif ?>
                     </tbody>
                 </table>
             </div>

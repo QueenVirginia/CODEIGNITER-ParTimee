@@ -56,19 +56,19 @@ class ForYou extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    function index_test()
-    {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['company'] = $this->Company_model->getAllCompany();
+    // function index_test()
+    // {
+    //     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    //     $data['company'] = $this->Company_model->getAllCompany();
 
-        if ($this->input->post('cari_company')) {
-            $data['company'] = $this->Company_model->searchCompany();
-        }
+    //     if ($this->input->post('cari_company')) {
+    //         $data['company'] = $this->Company_model->searchCompany();
+    //     }
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('foryou/index', $data);
-        $this->load->view('templates/footer');
-    }
+    //     $this->load->view('templates/header', $data);
+    //     $this->load->view('foryou/index', $data);
+    //     $this->load->view('templates/footer');
+    // }
 
     private function similarity_distance($matrix, $person1, $person2)
     {
@@ -92,7 +92,7 @@ class ForYou extends CI_Controller
             }
         }
 
-        // Similarity
+        // Normalisasi
         if ($sum == 0) {
             return 0;
         } else {
