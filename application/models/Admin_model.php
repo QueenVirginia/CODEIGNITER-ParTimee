@@ -24,7 +24,7 @@ class Admin_model extends CI_Model
     public function deleteDataUser($id_user)
     {
         $this->db->where('id_user', $id_user);
-        $this->db->delete('user');
+        $this->db->delete(array('user', 'apply'));
     }
 
     public function searchUser()
