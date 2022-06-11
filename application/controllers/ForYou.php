@@ -91,13 +91,14 @@ class ForYou extends CI_Controller
                 $sum = $sum + pow($value - $matrix[$person2][$key], 2);
             }
         }
+        // if ($sum == 0) {
+        //     return 0;
+        // } else {
+        //     return 1 / (1 + sqrt($sum));
+        // }
 
-        // Normalisasi
-        if ($sum == 0) {
-            return 0;
-        } else {
-            return 1 / (1 + sqrt($sum));
-        }
+        // Similarity
+        return 1 / (1 + sqrt($sum));
     }
 
     private function getRecommendations($matrix, $person)
@@ -130,11 +131,12 @@ class ForYou extends CI_Controller
         }
 
         foreach ($total as $key => $value) {
-            if ($value == NULL) {
-                return 0;
-            } else {
-                $ranks[$key] = $value / $simsum[$key];
-            }
+            // if ($value == NULL) {
+            //     return 0;
+            // } else {
+            //     $ranks[$key] = $value / $simsum[$key];
+            // }
+            $ranks[$key] = $value / $simsum[$key];
         }
 
         // Sorting DESC
