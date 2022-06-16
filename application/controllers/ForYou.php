@@ -91,11 +91,6 @@ class ForYou extends CI_Controller
                 $sum = $sum + pow($value - $matrix[$person2][$key], 2);
             }
         }
-        // if ($sum == 0) {
-        //     return 0;
-        // } else {
-        //     return 1 / (1 + sqrt($sum));
-        // }
 
         // Similarity
         return 1 / (1 + sqrt($sum));

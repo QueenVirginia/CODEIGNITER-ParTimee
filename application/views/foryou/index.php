@@ -21,7 +21,7 @@
 
             $this->db->select('company.id_company, count(company.id_company) as count, company.nama_company, company.logo, company.kantor_pusat, AVG(apply.rating) as rating');
             $this->db->from('company');
-            $this->db->join('apply', 'apply.id_company = company.id_company');
+            $this->db->join('apply', 'apply.id_company = company.id_company', 'left');
             $this->db->where('nama_company', $nama_company);
             $this->db->group_by('company.id_company');
             $data_company = $this->db->get()->result_array();
@@ -45,7 +45,21 @@
                     <div class="__jobs-company-apply card-body">
                         <div class="__job-content-exp">
                             <img src="asset/icon/experiences.svg" alt="" style="width: 20px; height: 20px;">
-                            <p><?= $dc['count']; ?> Pekerjaan Tersedia</p>
+                            <?php
+
+                            $id = $dc['id_company'];
+
+                            $this->db->select('count(jobs.id_job)');
+                            $this->db->from('company');
+                            $this->db->join('jobs', 'jobs.id_company = company.id_company', 'left');
+                            $this->db->where('jobs.id_company', $id);
+                            $this->db->group_by('company.id_company');
+                            $count = $this->db->get()->row_array();
+
+                            $count_res = implode(" ", $count);
+
+                            ?>
+                            <p><?= $count_res; ?> Pekerjaan Tersedia</p>
                         </div>
                     </div>
                 </div>
@@ -85,9 +99,23 @@
             <div class="__jobs-company-apply card-body">
                 <div class="__job-content-exp">
                     <img src="asset/icon/experiences.svg" alt="" style="width: 20px; height: 20px;">
-                    <p><?= $c['count']; ?> Pekerjaan Tersedia</p>
+                    <?php
+
+                    $id = $c['id_company'];
+
+                    $this->db->select('count(jobs.id_job)');
+                    $this->db->from('company');
+                    $this->db->join('jobs', 'jobs.id_company = company.id_company', 'left');
+                    $this->db->where('jobs.id_company', $id);
+                    $this->db->group_by('company.id_company');
+                    $count = $this->db->get()->row_array();
+
+                    $count_res = implode(" ", $count);
+
+                    ?>
+                    <p><?= $count_res; ?> Pekerjaan Tersedia</p>
                 </div>
             </div>
         </div>
-    <?php endforeach; ?>
+    <?php endforeach ?>
 </div>
