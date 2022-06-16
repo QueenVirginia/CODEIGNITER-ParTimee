@@ -173,7 +173,7 @@ class Admin_model extends CI_Model
     public function deleteDataCompany($id_company)
     {
         $this->db->where('id_company', $id_company);
-        $this->db->delete('company');
+        $this->db->delete(array('company', 'jobs'));
     }
 
     public function editDataCompany()

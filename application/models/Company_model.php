@@ -4,7 +4,7 @@ class Company_model extends CI_Model
 {
     public function GetAllCompany()
     {
-        $this->db->select('count(jobs.id_job) as count, company.id_company, company.nama_company, AVG(apply.rating) as rating, company.kantor_pusat, company.logo');
+        $this->db->select('jobs.id_job, company.id_company, company.nama_company, AVG(apply.rating) as rating, company.kantor_pusat, company.logo');
         $this->db->from('company');
         $this->db->join('jobs', 'jobs.id_company = company.id_company', 'left');
         $this->db->join('apply', 'apply.id_company = company.id_company', 'left');
