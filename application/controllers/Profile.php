@@ -12,6 +12,7 @@ class Profile extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+        // List Daftar Lowongan
         foreach ($data as $d) {
             $this->db->select('company.nama_company, company.id_company, apply.rating as apply_rating, apply.id_apply, jobs.nama_job');
             $this->db->from('apply');

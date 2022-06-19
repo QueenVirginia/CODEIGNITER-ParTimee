@@ -33,6 +33,7 @@ class Auth extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
         if ($user) {
+            // Check password
             if (password_verify($password, $user['password'])) {
                 $data = [
                     'email' => $user['email'],
@@ -95,6 +96,7 @@ class Auth extends CI_Controller
 
     public function logout()
     {
+        // Clean session
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('id_role');
 

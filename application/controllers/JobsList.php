@@ -18,7 +18,7 @@ class JobsList extends CI_Controller
             $data['jobs'] = $this->Jobs_model->searchJob();
         }
 
-        $data['count'] = $this->Jobs_model->countData();
+        // $data['count'] = $this->Jobs_model->countData();
 
         $this->load->view('templates/header', $data);
         $this->load->view('jobs_list/index', $data);
@@ -30,7 +30,8 @@ class JobsList extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['jobs'] = $this->Jobs_model->getJobsRow($id_job);
 
-        if ($this->input->post('addApply', true)) {
+        // Marked Button
+        if ($this->input->post('addApply')) {
             $id_user = $this->input->post('id_user');
             $id_job = $this->input->post('id_job');
 
@@ -40,6 +41,7 @@ class JobsList extends CI_Controller
             $this->db->where('id_job', $id_job);
             $query = $this->db->get()->row_array();
 
+            // Check data exist in table
             if ($query != NULL) {
                 $this->session->set_flashdata(
                     'msg_apply',
